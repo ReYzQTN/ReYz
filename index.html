@@ -3,131 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mes Liens</title>
+
+<title>ReYz</title>
 
 <style>
-body{
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family:Arial, sans-serif;
-    background:#8ec5ea;
 }
 
-.window{
-    width:90%;
-    max-width:1200px;
-    margin:20px auto;
-    background:#bfcde6;
-    border:2px solid #003399;
-    box-shadow:4px 4px 0 #4f6a91;
-}
-
-.titlebar{
-    background:#1d4f91;
-    color:white;
-    padding:10px;
-    font-weight:bold;
-    font-size:28px;
-}
-
-.content{
-    text-align:center;
-    padding:40px 20px;
-}
-
-.avatar{
-    width:120px;
-    height:120px;
-    border-radius:12px;
-    border:4px solid #888;
-    object-fit:cover;
-}
-
-h1{
-    margin:15px 0 5px;
-    font-size:48px;
-}
-
-.subtitle{
-    display:inline-block;
-    padding:6px 14px;
-    background:#eee;
-    border:1px solid #999;
-    margin-bottom:40px;
-}
-
-.link{
+body{
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
+
+    background-image:url('background.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+}
+
+.container{
     position:relative;
-    margin:18px auto;
-    width:85%;
-    max-width:1000px;
-    height:58px;
-    background:#d8dee9;
-    border-radius:6px;
-    border:2px solid #7b8ca5;
+    z-index:2;
+
+    width:90%;
+    max-width:500px;
+
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo h1{
+    color:white;
+    font-size:64px;
+    font-weight:900;
+
+    text-shadow:
+    0 0 10px #b84cff,
+    0 0 20px #7d2cff,
+    4px 4px 0 black;
+}
+
+.link{
     text-decoration:none;
-    color:#000080;
-    font-size:20px;
-    box-shadow:0 3px 0 #6d7f99;
+
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+
+    border:2px solid rgba(255,255,255,0.2);
+
+    color:white;
+
+    padding:18px;
+    border-radius:18px;
+
+    text-align:center;
+
+    font-size:22px;
+    font-weight:bold;
+
+    transition:0.2s;
 }
 
 .link:hover{
-    background:#e7edf7;
+    transform:scale(1.03);
+
+    background:rgba(173,73,255,0.35);
+
+    border-color:#c46fff;
+
+    box-shadow:
+    0 0 15px #a855f7,
+    0 0 30px rgba(168,85,247,0.5);
 }
 
-.dots{
-    position:absolute;
-    right:20px;
-    color:black;
-}
 </style>
 </head>
 
 <body>
 
-<div class="window">
+<div class="overlay"></div>
 
-<div class="titlebar">
-Mes Liens
-</div>
+<div class="container">
 
-<div class="content">
-
-<img class="avatar"
-src="https://i.imgur.com/6VBx3io.png">
-
+<div class="logo">
 <h1>ReYz</h1>
-
-<div class="subtitle">Pas en Stream</div>
-
-<a class="link" href="https://google.com">
-Mon PC
-<span class="dots">⋮</span>
-</a>
-
-<a class="link" href="https://instagram.com">
-Instagram
-<span class="dots">⋮</span>
-</a>
-
-<a class="link" href="https://twitter.com">
-Twitter
-<span class="dots">⋮</span>
-</a>
-
-<a class="link" href="#">
-Chaîne VOD
-<span class="dots">⋮</span>
-</a>
-
-<a class="link" href="#">
-Letterboxd
-<span class="dots">⋮</span>
-</a>
-
 </div>
+
+<a class="link" href="https://letterboxd.com/" target="_blank">
+Letterboxd
+</a>
+
+<a class="link" href="https://twitch.tv/" target="_blank">
+Twitch
+</a>
+
+<a class="link" href="https://discord.gg/" target="_blank">
+Discord
+</a>
+
+<a class="link" href="https://docs.google.com/" target="_blank">
+Google Doc
+</a>
+
 </div>
 
 </body>
