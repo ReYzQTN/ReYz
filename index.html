@@ -65,7 +65,6 @@ body::before{
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
-
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -90,36 +89,44 @@ body::before{
     overflow:hidden;
 }
 
-/* 🔥 FULLSCREEN FIX (IMPORTANT) */
+/* 🔥 FULLSCREEN FIX */
 .window.maximized{
-    top:0 !important;
-    left:0 !important;
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100vh;
+
     transform:none !important;
 
-    width:100vw !important;
-    height:100vh !important;
-
-    max-width:none !important;
-    max-height:none !important;
-
-    border-radius:0 !important;
+    border-radius:0;
 }
 
-/* minimized */
+/* MINIMISÉ */
 .window.minimized .content{
+    display:none;
+}
+
+.window.minimized{
+    height:50px;
+}
+
+/* FERMÉ */
+.window.closed{
     display:none;
 }
 
 /* ===== BAR ===== */
 .titlebar{
-    height:52px;
+    height:50px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:0 18px;
-
-    background:rgba(10,10,10,0.6);
+    background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
+    flex-shrink:0;
 }
 
 .titlebar div{
@@ -128,7 +135,7 @@ body::before{
     font-weight:600;
 }
 
-/* ===== 🔥 BOUTONS FIXÉS + NOUVELLE COULEUR ===== */
+/* ===== 🔥 BOUTONS THÈME ROUGE ===== */
 .controls{
     display:flex;
     gap:10px;
@@ -143,17 +150,18 @@ body::before{
     border:1px solid rgba(255,255,255,0.2);
 }
 
-/* NOUVEAU THÈME (plus dark red UI) */
+/* thème rouge cohérent site */
 .close{
     background:#ff3b3b;
 }
 
 .min{
-    background:#ffb020;
+    background:#b30000;
+    opacity:0.8;
 }
 
 .max{
-    background:#35d07f;
+    background:#ff1f1f;
 }
 
 .btn:hover{
@@ -165,12 +173,10 @@ body::before{
 .content{
     flex:1;
     padding:60px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:22px;
-
+    gap:26px;
     color:white;
 
     overflow:hidden;
@@ -181,6 +187,7 @@ body::before{
     overflow-y:auto;
 }
 
+/* avatar */
 .pp{
     width:180px;
     height:180px;
@@ -193,30 +200,25 @@ body::before{
     font-weight:900;
 }
 
-/* ===== 🔥 LINKS FIX COMPLET ===== */
+/* ===== 🔥 LINKS CORRIGÉS ===== */
 .links{
     width:100%;
 
-    max-width: min(1000px, 92%);
+    /* ultra important : prend la fenêtre mais reste lisible */
+    max-width: min(1050px, 92%);
 
     display:flex;
     flex-direction:column;
-
-    /* important pour éviter disparition */
-    gap:14px;
-
-    overflow:visible;
+    gap:18px;
 }
 
 .link{
     width:100%;
 
-    display:block;
-
     text-decoration:none;
     color:white;
 
-    padding:18px;
+    padding:20px;
 
     border-radius:14px;
 
@@ -249,7 +251,6 @@ body::before{
 <div class="window" id="window">
 
     <div class="titlebar">
-
         <div>Mes liens</div>
 
         <div class="controls">
@@ -257,7 +258,6 @@ body::before{
             <div class="btn min" onclick="minimizeWindow()"></div>
             <div class="btn max" onclick="maximizeWindow()"></div>
         </div>
-
     </div>
 
     <div class="content">
