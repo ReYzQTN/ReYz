@@ -36,37 +36,26 @@ body::before{
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
-
     width:360px;
     padding:18px;
-
     border-radius:14px;
-
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.15);
-
     color:white;
     text-align:center;
-
     backdrop-filter:blur(14px);
-
     display:none;
 }
 
-.open-app.show{
-    display:block;
-}
+.open-app.show{ display:block; }
 
 .click-here{
     display:inline-block;
     margin-top:8px;
-
     padding:4px 10px;
     border-radius:8px;
-
     background:rgba(255,0,0,0.25);
     border:1px solid rgba(255,0,0,0.4);
-
     cursor:pointer;
     font-weight:800;
 }
@@ -74,7 +63,6 @@ body::before{
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
-
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -99,47 +87,25 @@ body::before{
     overflow:hidden;
 }
 
-/* 🔥 FIX FULLSCREEN (IMPORTANT) */
+/* FULLSCREEN FIX */
 .window.maximized{
-    position:fixed;
-
-    top:0 !important;
-    left:0 !important;
-
-    width:100vw !important;
-    height:100vh !important;
-
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
     transform:none !important;
-
-    max-width:none !important;
-    max-height:none !important;
-
-    border-radius:0 !important;
-}
-
-/* minimisé */
-.window.minimized{
-    height:44px;
-}
-
-/* fermé */
-.window.closed{
-    display:none;
+    border-radius:0;
 }
 
 /* ===== BAR ===== */
 .titlebar{
     height:50px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     padding:0 18px;
-
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
-
     flex-shrink:0;
 }
 
@@ -149,55 +115,53 @@ body::before{
     font-weight:600;
 }
 
-/* boutons */
+/* ===== 🔥 BOUTONS FENÊTRE RESTAURÉS ===== */
 .controls{
     display:flex;
     gap:10px;
 }
 
 .btn{
-    width:13px;
-    height:13px;
+    width:12px;
+    height:12px;
     border-radius:50%;
-
     cursor:pointer;
-
-    background:rgba(255,255,255,0.10);
-    border:1px solid rgba(255,255,255,0.18);
-
     transition:0.2s;
+    border:1px solid rgba(255,255,255,0.25);
+}
+
+/* couleurs mac style */
+.close{
+    background:#ff5f57;
+}
+.min{
+    background:#febc2e;
+}
+.max{
+    background:#28c840;
 }
 
 .btn:hover{
     transform:scale(1.2);
+    filter:brightness(1.2);
 }
-
-.close:hover{ background:rgba(255,80,80,0.25); }
-.min:hover{ background:rgba(255,190,80,0.20); }
-.max:hover{ background:rgba(80,255,140,0.18); }
 
 /* ===== CONTENT ===== */
 .content{
     flex:1;
-
     padding:60px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:26px;
-
     color:white;
-
     overflow:hidden;
 }
 
-/* scroll UNIQUEMENT fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
 
-/* avatar */
 .pp{
     width:180px;
     height:180px;
@@ -210,10 +174,12 @@ body::before{
     font-weight:900;
 }
 
-/* links */
+/* ===== 🔥 LINKS MIEUX AJUSTÉS ===== */
 .links{
     width:100%;
-    max-width: min(900px, 90%);
+
+    /* suit la taille de la fenêtre de façon fluide */
+    max-width: min(1000px, 92%);
 
     display:flex;
     flex-direction:column;
@@ -226,14 +192,14 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:20px;
+    padding:22px;
 
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
 
-    font-size:18px;
+    font-size:19px;
     font-weight:600;
 
     text-align:center;
@@ -259,15 +225,13 @@ body::before{
 <div class="window" id="window">
 
     <div class="titlebar">
-
         <div>Mes liens</div>
 
         <div class="controls">
-            <div class="btn" onclick="minimizeWindow()"></div>
-            <div class="btn" onclick="maximizeWindow()"></div>
-            <div class="btn" onclick="closeWindow()"></div>
+            <div class="btn close" onclick="closeWindow()"></div>
+            <div class="btn min" onclick="minimizeWindow()"></div>
+            <div class="btn max" onclick="maximizeWindow()"></div>
         </div>
-
     </div>
 
     <div class="content">
