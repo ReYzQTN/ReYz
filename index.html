@@ -91,35 +91,17 @@ body::before{
 
 /* 🔥 FULLSCREEN FIX */
 .window.maximized{
-    position:fixed;
     top:0;
     left:0;
-
     width:100vw;
     height:100vh;
-
     transform:none !important;
-
     border-radius:0;
-}
-
-/* MINIMISÉ */
-.window.minimized .content{
-    display:none;
-}
-
-.window.minimized{
-    height:50px;
-}
-
-/* FERMÉ */
-.window.closed{
-    display:none;
 }
 
 /* ===== BAR ===== */
 .titlebar{
-    height:50px;
+    height:52px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -135,38 +117,35 @@ body::before{
     font-weight:600;
 }
 
-/* ===== 🔥 BOUTONS THÈME ROUGE ===== */
+/* ===== BOUTONS FIXÉS ===== */
 .controls{
     display:flex;
     gap:10px;
 }
 
 .btn{
-    width:12px;
-    height:12px;
+    width:13px;
+    height:13px;
     border-radius:50%;
     cursor:pointer;
-    transition:0.2s;
-    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.25);
+    transition:0.25s;
 }
 
-/* thème rouge cohérent site */
-.close{
-    background:#ff3b3b;
-}
-
-.min{
-    background:#b30000;
-    opacity:0.8;
-}
-
-.max{
-    background:#ff1f1f;
-}
-
-.btn:hover{
+/* couleurs UNIQUEMENT hover */
+.close:hover{
+    background:#ff5f57;
     transform:scale(1.2);
-    filter:brightness(1.2);
+}
+
+.min:hover{
+    background:#febc2e;
+    transform:scale(1.2);
+}
+
+.max:hover{
+    background:#28c840;
+    transform:scale(1.2);
 }
 
 /* ===== CONTENT ===== */
@@ -179,15 +158,10 @@ body::before{
     gap:26px;
     color:white;
 
-    overflow:hidden;
-}
-
-/* scroll uniquement fullscreen */
-.window.maximized .content{
+    /* 🔥 IMPORTANT : scroll interne */
     overflow-y:auto;
 }
 
-/* avatar */
 .pp{
     width:180px;
     height:180px;
@@ -200,16 +174,16 @@ body::before{
     font-weight:900;
 }
 
-/* ===== 🔥 LINKS CORRIGÉS ===== */
+/* ===== LINKS FIX COMPLET ===== */
 .links{
     width:100%;
-
-    /* ultra important : prend la fenêtre mais reste lisible */
-    max-width: min(1050px, 92%);
+    max-width:900px;
 
     display:flex;
     flex-direction:column;
     gap:18px;
+
+    padding-bottom:20px; /* évite coupure dernier lien */
 }
 
 .link{
@@ -218,14 +192,14 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:20px;
+    padding:22px;
 
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
 
-    font-size:18px;
+    font-size:19px;
     font-weight:600;
 
     text-align:center;
