@@ -27,14 +27,16 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== BOUTON RÉOUVERTURE ===== */
+/* ===== BOUTON RÉOUVERTURE CENTRÉ ===== */
 .open-app{
     position:absolute;
-    top:20px;
-    left:20px;
 
-    padding:12px 14px;
-    border-radius:12px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    padding:14px 18px;
+    border-radius:14px;
 
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.15);
@@ -42,10 +44,10 @@ body::before{
     color:white;
     cursor:pointer;
 
-    backdrop-filter:blur(12px);
-    transition:0.2s;
+    backdrop-filter:blur(14px);
 
-    display:none; /* caché par défaut */
+    display:none;
+    text-align:center;
 }
 
 .open-app.show{
@@ -79,14 +81,16 @@ body::before{
     transition:0.25s ease;
 }
 
-/* maximisé */
+/* MAXIMISÉ CORRIGÉ */
 .window.maximized{
+    position:fixed;
     top:0;
     left:0;
-    transform:none;
 
-    width:100%;
-    height:100%;
+    width:100vw;
+    height:100vh;
+
+    transform:none;
 
     border-radius:0;
 }
@@ -192,7 +196,7 @@ body::before{
 
 <body>
 
-<!-- bouton réouvrir -->
+<!-- bouton réouvrir CENTRÉ -->
 <div class="open-app" id="openBtn" onclick="openWindow()">
     Cliquez ici pour faire réapparaître la fenêtre
 </div>
@@ -252,16 +256,21 @@ function minimizeWindow(){
     win.classList.toggle("minimized");
 }
 
-/* maximiser + recentrer */
+/* maximiser corrigé */
 function maximizeWindow(){
 
     win.classList.toggle("maximized");
 
-    // 🔥 si on vient de maximiser → reset position (centré propre)
     if(win.classList.contains("maximized")){
+        // reset propre
+        win.style.left = "0";
+        win.style.top = "0";
+        win.style.transform = "none";
+    } else {
+        // retour centré
         win.style.left = "50%";
         win.style.top = "50%";
-        win.style.transform = "none";
+        win.style.transform = "translate(-50%, -50%)";
     }
 }
 
@@ -272,6 +281,7 @@ let dragging = false;
 let offsetX, offsetY;
 
 dragbar.addEventListener("mousedown", (e) => {
+
     if(win.classList.contains("maximized")) return;
 
     dragging = true;
