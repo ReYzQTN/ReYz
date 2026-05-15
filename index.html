@@ -23,7 +23,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* 🔥 overlay BEAUCOUP plus léger */
+/* Overlay léger pour lisibilité sans tuer le fond */
 body::before{
     content:"";
     position:absolute;
@@ -75,7 +75,7 @@ body::before{
     gap:14px;
 }
 
-/* glass léger MAIS lisible */
+/* 🔥 LINKS + GLOW */
 .link{
     text-decoration:none;
     color:white;
@@ -92,15 +92,23 @@ body::before{
     font-size:18px;
     font-weight:600;
 
-    transition:0.2s ease;
+    transition:0.25s ease;
 
-    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.35),
+        0 0 0 rgba(255,0,0,0);
 }
 
 .link:hover{
     transform:translateY(-2px);
-    background:rgba(255,255,255,0.12);
-    border-color:rgba(255,255,255,0.25);
+
+    background:rgba(255,255,255,0.10);
+    border-color:rgba(255,0,0,0.35);
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,0.45),
+        0 0 12px rgba(255,0,0,0.35),
+        0 0 28px rgba(255,0,0,0.15);
 }
 
 .footer{
@@ -116,6 +124,7 @@ body::before{
 <div class="container">
 
     <img src="pp.jpg" class="pp">
+
     <div class="name">ReYz</div>
 
     <div class="links">
