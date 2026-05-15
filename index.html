@@ -43,9 +43,7 @@ body::before{
     cursor:pointer;
 
     backdrop-filter:blur(14px);
-
     display:none;
-    text-align:center;
 }
 
 .open-app.show{
@@ -60,8 +58,9 @@ body::before{
     transform:translate(-50%, -50%);
 
     width:900px;
-    max-width:95vw;
     height:600px;
+
+    max-width:95vw;
     max-height:90vh;
 
     background:rgba(255,255,255,0.06);
@@ -78,7 +77,7 @@ body::before{
     flex-direction:column;
 }
 
-/* FULLSCREEN PROPRE */
+/* 🔥 FULLSCREEN PARFAIT */
 .window.maximized{
     top:0;
     left:0;
@@ -111,8 +110,8 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    flex-shrink:0;
     user-select:none;
+    flex-shrink:0;
 }
 
 .titlebar div{
@@ -121,7 +120,7 @@ body::before{
     font-weight:600;
 }
 
-/* boutons */
+/* boutons fenêtre */
 .controls{
     display:flex;
     gap:8px;
@@ -144,26 +143,20 @@ body::before{
     transform:scale(1.2);
 }
 
-/* hover thème */
+/* colors */
 .close:hover{
     background:rgba(255,80,80,0.25);
-    border-color:rgba(255,80,80,0.6);
 }
-
 .min:hover{
     background:rgba(255,190,80,0.20);
-    border-color:rgba(255,180,80,0.5);
 }
-
 .max:hover{
     background:rgba(80,255,140,0.18);
-    border-color:rgba(80,255,140,0.5);
 }
 
-/* ===== CONTENU (SCROLL ICI) ===== */
+/* ===== CONTENT ===== */
 .content{
     flex:1;
-    overflow-y:auto;   /* 🔥 SCROLL FIXÉ ICI */
 
     padding:40px;
 
@@ -173,19 +166,16 @@ body::before{
     gap:18px;
 
     color:white;
-    text-align:center;
+
+    overflow:hidden; /* ❌ pas de scroll ici */
 }
 
-/* scrollbar propre (optionnel) */
-.content::-webkit-scrollbar{
-    width:6px;
+/* 🔥 SCROLL UNIQUEMENT EN MODE MAXIMISÉ */
+.window.maximized .content{
+    overflow-y:auto;
 }
 
-.content::-webkit-scrollbar-thumb{
-    background:rgba(255,255,255,0.2);
-    border-radius:10px;
-}
-
+/* avatar */
 .pp{
     width:140px;
     height:140px;
@@ -198,23 +188,25 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LIENS 100% PROPRE ===== */
+/* ===== LINKS FULL WIDTH FIX ===== */
 .links{
     width:100%;
-    max-width:520px; /* 🔥 adapté à grande fenêtre */
 
     display:flex;
     flex-direction:column;
     gap:14px;
 }
 
+/* 🔥 IMPORTANT FIX */
 .link{
-    width:100%; /* 🔥 prend toute la largeur du container */
+    width:100%;
+
+    display:block;
 
     text-decoration:none;
     color:white;
 
-    padding:16px 18px;
+    padding:16px;
 
     border-radius:14px;
 
