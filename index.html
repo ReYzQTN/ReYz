@@ -27,36 +27,26 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== BOUTON RÉOUVERTURE AGRANDI ===== */
+/* ===== BOUTON RÉOUVERTURE ===== */
 .open-app{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    padding:18px 26px;
-
-    border-radius:16px;
+    padding:14px 18px;
+    border-radius:14px;
 
     background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.18);
+    border:1px solid rgba(255,255,255,0.15);
 
     color:white;
-    font-size:16px;
-    font-weight:600;
-    letter-spacing:0.3px;
-
     cursor:pointer;
 
-    backdrop-filter:blur(16px);
-
+    backdrop-filter:blur(14px);
     text-align:center;
 
     display:none;
-
-    box-shadow:0 10px 30px rgba(0,0,0,0.4);
-
-    transition:0.25s;
 }
 
 .open-app.show{
@@ -65,19 +55,17 @@ body::before{
 
 .open-app:hover{
     background:rgba(255,0,0,0.25);
-    border-color:rgba(255,0,0,0.4);
-    transform:translate(-50%, -50%) scale(1.03);
-    box-shadow:0 0 18px rgba(255,0,0,0.25);
 }
 
-/* ===== FENÊTRE GLASS ===== */
+/* ===== FENÊTRE (AGRANDIE) ===== */
 .window{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:440px;
+    width:680px;   /* 🔥 PLUS GRAND */
+    max-width:95vw;
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -117,28 +105,35 @@ body::before{
     display:none;
 }
 
-/* barre */
+/* ===== BARRE ===== */
 .titlebar{
-    height:42px;
+    height:44px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 12px;
+    padding:0 14px;
 
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
+    cursor:default;
     user-select:none;
 }
 
+.titlebar div{
+    color:white;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* ===== BOUTONS ===== */
 .controls{
     display:flex;
     gap:8px;
 }
 
-/* ===== BOUTONS THÈME GLASS ===== */
 .btn{
     width:11px;
     height:11px;
@@ -179,38 +174,39 @@ body::before{
     box-shadow:0 0 10px rgba(80,255,140,0.25);
 }
 
-/* contenu */
+/* ===== CONTENU ===== */
 .content{
-    padding:22px;
+    padding:30px; /* un peu plus d’espace */
     text-align:center;
     color:white;
 }
 
 .pp{
-    width:110px;
-    height:110px;
+    width:120px;
+    height:120px;
     border-radius:16px;
     object-fit:cover;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .name{
-    font-size:32px;
+    font-size:36px;
     font-weight:800;
-    margin-bottom:15px;
+    margin-bottom:18px;
 }
 
 .links{
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
 }
 
+/* liens */
 .link{
     text-decoration:none;
     color:white;
 
-    padding:12px;
+    padding:14px;
     border-radius:12px;
 
     background:rgba(255,255,255,0.06);
@@ -231,7 +227,7 @@ body::before{
 
 <body>
 
-<!-- bouton réouverture -->
+<!-- bouton réouvrir -->
 <div class="open-app" id="openBtn" onclick="openWindow()">
     Cliquez ici pour faire réapparaître la fenêtre
 </div>
@@ -241,9 +237,7 @@ body::before{
 
     <div class="titlebar">
 
-        <div style="color:white;font-size:13px;font-weight:600;">
-            Mes liens
-        </div>
+        <div>Mes liens</div>
 
         <div class="controls">
             <div class="btn min" onclick="minimizeWindow()"></div>
