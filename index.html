@@ -13,10 +13,15 @@
     font-family:system-ui, sans-serif;
 }
 
-body{
-    height:100vh;
+html, body{
+    height:100%;
     overflow:hidden;
+}
+
+/* background */
+body{
     background:url('background.jpg') center/cover no-repeat;
+    position:relative;
 }
 
 body::before{
@@ -46,6 +51,7 @@ body::before{
     text-align:center;
 
     display:none;
+    z-index:10;
 }
 
 .open-app.show{
@@ -54,48 +60,28 @@ body::before{
 
 /* ===== FENÊTRE ===== */
 .window{
-    position:fixed; /* 🔥 IMPORTANT (fix overflow + fullscreen) */
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    position:fixed;
+    inset:0; /* 🔥 FULLSCREEN PROPRE */
 
-    width:900px;
-    max-width:95vw;
-    height:600px;
-    max-height:90vh; /* 🔥 évite débordement écran */
+    display:flex;
+    flex-direction:column;
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,0.15);
-    border-radius:18px;
-
-    box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
     overflow:hidden;
-
-    display:flex;
-    flex-direction:column;
-}
-
-/* fullscreen propre */
-.window.maximized{
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    transform:none;
-    border-radius:0;
-}
-
-/* minimisé */
-.window.minimized{
-    height:44px;
 }
 
 /* fermé */
 .window.closed{
     display:none;
+}
+
+/* minimisé */
+.window.minimized{
+    height:44px;
 }
 
 /* ===== BARRE ===== */
@@ -111,7 +97,6 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    user-select:none;
     flex-shrink:0;
 }
 
@@ -137,8 +122,6 @@ body::before{
     background:rgba(255,255,255,0.10);
     border:1px solid rgba(255,255,255,0.18);
 
-    backdrop-filter:blur(10px);
-
     transition:0.2s;
 }
 
@@ -146,37 +129,35 @@ body::before{
     transform:scale(1.2);
 }
 
-/* hover colors */
-.close:hover{
-    background:rgba(255,80,80,0.25);
-    border-color:rgba(255,80,80,0.6);
-}
+.close:hover{ background:rgba(255,80,80,0.25); }
+.min:hover{ background:rgba(255,190,80,0.20); }
+.max:hover{ background:rgba(80,255,140,0.18); }
 
-.min:hover{
-    background:rgba(255,190,80,0.20);
-    border-color:rgba(255,180,80,0.5);
-}
-
-.max:hover{
-    background:rgba(80,255,140,0.18);
-    border-color:rgba(80,255,140,0.5);
-}
-
-/* ===== CONTENU ===== */
+/* ===== CONTENU SCROLLABLE ===== */
 .content{
     flex:1;
+    overflow-y:auto; /* 🔥 SCROLL FULLSCREEN */
+
     padding:40px;
-    text-align:center;
-    color:white;
 
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:18px;
 
-    overflow:auto; /* 🔥 évite overflow vertical */
+    color:white;
 }
 
+/* scroll bar propre (optionnel mais clean) */
+.content::-webkit-scrollbar{
+    width:8px;
+}
+.content::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,0.15);
+    border-radius:10px;
+}
+
+/* profil */
 .pp{
     width:140px;
     height:140px;
@@ -192,35 +173,33 @@ body::before{
 /* ===== LIENS FIXÉS PROPREMENT ===== */
 .links{
     width:100%;
-    max-width:420px; /* 🔥 empêche débordement */
+    max-width:600px; /* 🔥 ADAPTÉ À FULLSCREEN */
 
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:16px;
 }
 
+/* bouton lien FULL WIDTH */
 .link{
-    width:100%; /* 🔥 important */
+    width:100%;
 
     text-decoration:none;
     color:white;
 
-    padding:16px;
+    padding:18px 20px;
 
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
 
-    backdrop-filter:blur(10px);
+    text-align:center;
 
     font-size:16px;
     font-weight:600;
 
-    text-align:center;
-
     transition:0.2s;
-    box-sizing:border-box; /* 🔥 évite overflow */
 }
 
 .link:hover{
