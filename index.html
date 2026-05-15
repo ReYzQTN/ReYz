@@ -33,7 +33,6 @@ body::before{
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
-
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -56,31 +55,22 @@ body::before{
     flex-direction:column;
 
     overflow:hidden;
+    z-index:10;
 }
 
-/* 🔥 FULLSCREEN FIX TOTAL (IMPORTANT) */
+/* FULLSCREEN */
 .window.maximized{
-    position:fixed !important;
-
-    top:0 !important;
-    left:0 !important;
-
+    top:0;
+    left:0;
     transform:none !important;
-
     width:100vw !important;
     height:100vh !important;
-
-    max-width:none !important;
-    max-height:none !important;
-
     border-radius:0 !important;
 }
 
 /* MINIMIZED */
 .window.minimized{
     height:50px !important;
-    width:350px;
-    overflow:hidden;
 }
 
 /* CLOSED */
@@ -136,14 +126,11 @@ body::before{
 .content{
     flex:1;
     padding:60px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:26px;
-
     color:white;
-
     overflow-y:auto;
 }
 
@@ -160,15 +147,13 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LINKS ===== */
+/* links */
 .links{
     width:100%;
     max-width:900px;
-
     display:flex;
     flex-direction:column;
     gap:18px;
-
     padding-bottom:40px;
 }
 
@@ -185,7 +170,6 @@ body::before{
 
     font-size:18px;
     font-weight:600;
-
     text-align:center;
 
     transition:0.2s;
@@ -196,12 +180,56 @@ body::before{
     border-color:rgba(255,0,0,0.4);
     transform:scale(1.02);
 }
+
+/* ===== 🔥 FIX MESSAGE VISIBILITÉ ===== */
+.open-app{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    width:360px;
+    padding:18px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+
+    color:white;
+    text-align:center;
+
+    backdrop-filter:blur(14px);
+
+    display:none;
+
+    /* 🔥 IMPORTANT FIX */
+    z-index:99999;
+}
+
+.open-app.show{
+    display:block;
+}
+
+.click-here{
+    display:inline-block;
+    margin-top:8px;
+
+    padding:4px 10px;
+    border-radius:8px;
+
+    background:rgba(255,0,0,0.25);
+    border:1px solid rgba(255,0,0,0.4);
+
+    cursor:pointer;
+    font-weight:800;
+}
 </style>
 </head>
 
 <body>
 
-    <div class="open-app" id="openBtn">
+<div class="open-app" id="openBtn">
     Bravo tu as cassé le site !<br>
     Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
 </div>
@@ -239,9 +267,16 @@ body::before{
 <script>
 
 const win = document.getElementById("window");
+const openBtn = document.getElementById("openBtn");
 
 function closeWindow(){
     win.classList.add("closed");
+    openBtn.classList.add("show");
+}
+
+function openWindow(){
+    win.classList.remove("closed");
+    openBtn.classList.remove("show");
 }
 
 function minimizeWindow(){
