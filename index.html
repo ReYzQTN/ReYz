@@ -19,7 +19,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond sombre */
+/* fond */
 body::before{
     content:"";
     position:absolute;
@@ -27,11 +27,36 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
+/* ===== BOUTON D'OUVERTURE ===== */
+.open-app{
+    position:absolute;
+    top:20px;
+    left:20px;
+
+    padding:10px 14px;
+    border-radius:10px;
+
+    background:rgba(0,0,0,0.6);
+    border:1px solid rgba(255,255,255,0.15);
+
+    color:white;
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+    transition:0.2s;
+}
+
+.open-app:hover{
+    background:rgba(120,0,0,0.5);
+}
+
 /* ===== FENÊTRE ===== */
 .window{
     position:absolute;
-    top:120px;
-    left:120px;
+
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
 
     width:420px;
 
@@ -46,7 +71,7 @@ body::before{
     overflow:hidden;
 }
 
-/* barre de titre */
+/* barre */
 .titlebar{
     height:38px;
     display:flex;
@@ -61,14 +86,12 @@ body::before{
     user-select:none;
 }
 
-/* titre */
 .title{
     color:white;
     font-size:13px;
     font-weight:600;
 }
 
-/* boutons */
 .controls{
     display:flex;
     gap:8px;
@@ -105,7 +128,6 @@ body::before{
     margin-bottom:15px;
 }
 
-/* liens */
 .links{
     display:flex;
     flex-direction:column;
@@ -130,13 +152,12 @@ body::before{
     transform:scale(1.02);
 }
 
-/* MINIMISÉ */
+/* états */
 .window.minimized{
     height:38px;
     overflow:hidden;
 }
 
-/* FERMÉ */
 .window.closed{
     display:none;
 }
@@ -145,12 +166,17 @@ body::before{
 
 <body>
 
+<!-- bouton pour réouvrir -->
+<div class="open-app" onclick="openWindow()">
+    🌐 Mes liens
+</div>
+
+<!-- fenêtre -->
 <div class="window" id="window">
 
-    <!-- BARRE -->
     <div class="titlebar" id="dragbar">
 
-        <div class="title">🌐 Mes liens</div>
+        <div class="title">Mes liens</div>
 
         <div class="controls">
             <div class="btn min" onclick="minimizeWindow()"></div>
@@ -159,7 +185,6 @@ body::before{
 
     </div>
 
-    <!-- CONTENU -->
     <div class="content">
 
         <img src="pp.jpg" class="pp">
@@ -177,43 +202,52 @@ body::before{
 </div>
 
 <script>
-/* ===== FERMER ===== */
+
+const win = document.getElementById("window");
+
+/* fermer (cache) */
 function closeWindow(){
-    document.getElementById("window").classList.add("closed");
+    win.classList.add("closed");
 }
 
-/* ===== MINIMISER ===== */
+/* réouvrir */
+function openWindow(){
+    win.classList.remove("closed");
+}
+
+/* minimiser */
 function minimizeWindow(){
-    document.getElementById("window").classList.toggle("minimized");
+    win.classList.toggle("minimized");
 }
 
-/* ===== DRAG & DROP ===== */
-const windowEl = document.getElementById("window");
+/* drag */
 const dragbar = document.getElementById("dragbar");
 
-let isDragging = false;
+let dragging = false;
 let offsetX, offsetY;
 
 dragbar.addEventListener("mousedown", (e) => {
-    isDragging = true;
+    dragging = true;
 
-    offsetX = e.clientX - windowEl.offsetLeft;
-    offsetY = e.clientY - windowEl.offsetTop;
+    offsetX = e.clientX - win.offsetLeft;
+    offsetY = e.clientY - win.offsetTop;
 
     dragbar.style.cursor = "grabbing";
 });
 
 document.addEventListener("mousemove", (e) => {
-    if(!isDragging) return;
+    if(!dragging) return;
 
-    windowEl.style.left = (e.clientX - offsetX) + "px";
-    windowEl.style.top = (e.clientY - offsetY) + "px";
+    win.style.left = (e.clientX - offsetX) + "px";
+    win.style.top = (e.clientY - offsetY) + "px";
+    win.style.transform = "none"; // important après drag
 });
 
 document.addEventListener("mouseup", () => {
-    isDragging = false;
+    dragging = false;
     dragbar.style.cursor = "grab";
 });
+
 </script>
 
 </body>
