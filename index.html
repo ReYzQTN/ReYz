@@ -71,7 +71,7 @@ body::before{
     font-weight:800;
 }
 
-/* ===== WINDOW (TRÈS GRANDE) ===== */
+/* ===== WINDOW ===== */
 .window{
     position:fixed;
 
@@ -79,8 +79,8 @@ body::before{
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:1300px;   /* 🔥 ENCORE PLUS GRAND */
-    height:850px;   /* 🔥 ENCORE PLUS GRAND */
+    width:1300px;
+    height:850px;
 
     max-width:96vw;
     max-height:94vh;
@@ -99,14 +99,22 @@ body::before{
     overflow:hidden;
 }
 
-/* fullscreen */
+/* 🔥 FIX FULLSCREEN (IMPORTANT) */
 .window.maximized{
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
+    position:fixed;
+
+    top:0 !important;
+    left:0 !important;
+
+    width:100vw !important;
+    height:100vh !important;
+
     transform:none !important;
-    border-radius:0;
+
+    max-width:none !important;
+    max-height:none !important;
+
+    border-radius:0 !important;
 }
 
 /* minimisé */
@@ -141,7 +149,7 @@ body::before{
     font-weight:600;
 }
 
-/* boutons fenêtre */
+/* boutons */
 .controls{
     display:flex;
     gap:10px;
@@ -150,7 +158,6 @@ body::before{
 .btn{
     width:13px;
     height:13px;
-
     border-radius:50%;
 
     cursor:pointer;
@@ -173,7 +180,7 @@ body::before{
 .content{
     flex:1;
 
-    padding:60px; /* 🔥 plus large espace */
+    padding:60px;
 
     display:flex;
     flex-direction:column;
@@ -185,7 +192,7 @@ body::before{
     overflow:hidden;
 }
 
-/* scroll uniquement fullscreen */
+/* scroll UNIQUEMENT fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
@@ -203,10 +210,10 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LINKS ADAPTATIFS ===== */
+/* links */
 .links{
     width:100%;
-    max-width:750px; /* 🔥 adapté à grande fenêtre */
+    max-width: min(900px, 90%);
 
     display:flex;
     flex-direction:column;
@@ -227,6 +234,7 @@ body::before{
     border:1px solid rgba(255,255,255,0.12);
 
     font-size:18px;
+    font-weight:600;
 
     text-align:center;
 
