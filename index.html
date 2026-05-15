@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ReYz</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 body{
@@ -20,31 +18,29 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    overflow:hidden;
 
-    background-image:url('background.jpg');
+    /* Background propre + moderne */
+    background:
+        radial-gradient(circle at top, rgba(255,0,0,0.12), transparent 40%),
+        radial-gradient(circle at bottom, rgba(0,0,0,0.9), #000 60%),
+        url('background.jpg');
     background-size:cover;
     background-position:center;
-    background-repeat:no-repeat;
-
-    overflow:hidden;
 }
 
-.overlay{
+/* Overlay léger uniquement pour lisibilité */
+body::before{
+    content:"";
     position:absolute;
     inset:0;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,0.72),
-        rgba(20,0,0,0.82)
-    );
-
-    backdrop-filter:blur(2px);
+    background:rgba(0,0,0,0.55);
+    z-index:0;
 }
 
 .container{
     position:relative;
-    z-index:2;
+    z-index:1;
 
     width:90%;
     max-width:420px;
@@ -52,124 +48,100 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
-
     gap:18px;
 }
 
+/* Avatar */
 .pp{
     width:140px;
     height:140px;
-
-    border-radius:12px;
-
+    border-radius:16px;
     object-fit:cover;
 
-    border:2px solid rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* Nom */
 .name{
     color:white;
-
-    font-size:52px;
-    font-weight:900;
-
+    font-size:48px;
+    font-weight:800;
     letter-spacing:2px;
 
-    text-shadow:
-    3px 3px 0 black;
+    text-shadow:0 6px 20px rgba(0,0,0,0.6);
 }
 
+/* Links container */
 .links{
     width:100%;
-
     display:flex;
     flex-direction:column;
-
-    gap:16px;
-
+    gap:14px;
     margin-top:10px;
 }
 
+/* Glassmorphism propre uniquement ici */
 .link{
     text-decoration:none;
-
     color:white;
-
     text-align:center;
 
-    padding:18px;
+    padding:16px 18px;
+    border-radius:14px;
 
-    border-radius:16px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
 
-    background:rgba(0,0,0,0.45);
+    /* blur LOCAL uniquement (pas global) */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
-    border:1px solid rgba(255,0,0,0.15);
+    font-size:18px;
+    font-weight:600;
 
-    backdrop-filter:blur(10px);
+    transition:0.25s ease;
 
-    font-size:20px;
-    font-weight:bold;
-
-    transition:0.25s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
 }
 
 .link:hover{
+    transform:translateY(-2px);
 
-    transform:translateY(-3px) scale(1.02);
-
-    background:rgba(120,0,0,0.45);
-
-    border-color:#ff0000;
+    background:rgba(255,0,0,0.12);
+    border-color:rgba(255,0,0,0.4);
 
     box-shadow:
-    0 0 18px rgba(255,0,0,0.4),
-    0 0 40px rgba(255,0,0,0.2);
+        0 10px 25px rgba(255,0,0,0.15),
+        0 8px 20px rgba(0,0,0,0.4);
 }
 
+/* Footer discret */
 .footer{
-    margin-top:10px;
-
-    color:rgba(255,255,255,0.35);
-
+    margin-top:8px;
+    color:rgba(255,255,255,0.4);
     font-size:12px;
+    letter-spacing:1px;
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
-
 <div class="container">
 
-<img src="pp.jpg" class="pp">
+    <img src="pp.jpg" class="pp">
 
-<div class="name">ReYz</div>
+    <div class="name">ReYz</div>
 
-<div class="links">
+    <div class="links">
+        <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
+        <a class="link" href="https://www.twitch.tv/reyzqtn" target="_blank">Twitch</a>
+        <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
+        <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
+    </div>
 
-<a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">
-Letterboxd
-</a>
-
-<a class="link" href="https://www.twitch.tv/reyzqtn" target="_blank">
-Twitch
-</a>
-
-<a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">
-Discord
-</a>
-
-<a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">
-Google Doc
-</a>
-
-</div>
-
-<div class="footer">
-ReYz ©
-</div>
+    <div class="footer">ReYz ©</div>
 
 </div>
 
