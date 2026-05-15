@@ -34,7 +34,7 @@ body::before{
     left:50%;
     transform:translate(-50%, -50%);
 
-    padding:14px 18px;
+    padding:16px 20px;
     border-radius:14px;
 
     background:rgba(255,255,255,0.08);
@@ -47,6 +47,7 @@ body::before{
     text-align:center;
 
     display:none;
+    font-size:14px;
 }
 
 .open-app.show{
@@ -57,23 +58,24 @@ body::before{
     background:rgba(255,0,0,0.25);
 }
 
-/* ===== FENÊTRE (AGRANDIE) ===== */
+/* ===== FENÊTRE TRÈS GRANDE ===== */
 .window{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:680px;   /* 🔥 PLUS GRAND */
+    width:900px;          /* 🔥 PLUS GRAND */
     max-width:95vw;
+    height:600px;         /* 🔥 HAUTEUR FIXE STYLE APP */
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,0.15);
-    border-radius:16px;
+    border-radius:18px;
 
-    box-shadow:0 25px 80px rgba(0,0,0,0.7);
+    box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
     overflow:hidden;
 
@@ -96,7 +98,7 @@ body::before{
 
 /* minimisé */
 .window.minimized{
-    height:42px;
+    height:44px;
     overflow:hidden;
 }
 
@@ -176,29 +178,36 @@ body::before{
 
 /* ===== CONTENU ===== */
 .content{
-    padding:30px; /* un peu plus d’espace */
+    padding:40px;
     text-align:center;
     color:white;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
 }
 
 .pp{
-    width:120px;
-    height:120px;
-    border-radius:16px;
+    width:140px;
+    height:140px;
+    border-radius:18px;
     object-fit:cover;
-    margin-bottom:12px;
 }
 
 .name{
-    font-size:36px;
-    font-weight:800;
-    margin-bottom:18px;
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
 .links{
+    width:100%;
+    max-width:420px;
+
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:14px;
 }
 
 /* liens */
@@ -206,8 +215,8 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:14px;
-    border-radius:12px;
+    padding:16px;
+    border-radius:14px;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
@@ -215,6 +224,8 @@ body::before{
     backdrop-filter:blur(10px);
 
     transition:0.2s;
+    font-size:16px;
+    font-weight:600;
 }
 
 .link:hover{
