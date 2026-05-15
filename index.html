@@ -19,7 +19,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond */
+/* fond sombre */
 body::before{
     content:"";
     position:absolute;
@@ -27,30 +27,30 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== BOUTON D'OUVERTURE ===== */
+/* bouton ouverture */
 .open-app{
     position:absolute;
     top:20px;
     left:20px;
 
     padding:10px 14px;
-    border-radius:10px;
+    border-radius:12px;
 
-    background:rgba(0,0,0,0.6);
+    background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.15);
 
     color:white;
     cursor:pointer;
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
     transition:0.2s;
 }
 
 .open-app:hover{
-    background:rgba(120,0,0,0.5);
+    background:rgba(255,0,0,0.2);
 }
 
-/* ===== FENÊTRE ===== */
+/* ===== FENÊTRE GLASS ===== */
 .window{
     position:absolute;
 
@@ -58,40 +58,52 @@ body::before{
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:420px;
+    width:440px;
+    height:auto;
 
-    background:rgba(25,25,25,0.78);
-    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:16px;
 
-    box-shadow:0 25px 70px rgba(0,0,0,0.7);
+    box-shadow:0 25px 80px rgba(0,0,0,0.7);
 
     overflow:hidden;
+
+    transition:0.25s ease;
 }
 
-/* barre */
+/* MODE MAXIMISÉ */
+.window.maximized{
+    top:0;
+    left:0;
+    transform:none;
+
+    width:100%;
+    height:100%;
+    border-radius:0;
+}
+
+/* BARRE */
 .titlebar{
-    height:38px;
+    height:42px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 10px;
+    padding:0 12px;
 
-    background:rgba(0,0,0,0.65);
+    background:rgba(0,0,0,0.35);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
     cursor:grab;
 
     user-select:none;
 }
 
-.title{
-    color:white;
-    font-size:13px;
-    font-weight:600;
-}
-
+/* boutons style mac + glass */
 .controls{
     display:flex;
     gap:8px;
@@ -101,15 +113,26 @@ body::before{
     width:12px;
     height:12px;
     border-radius:50%;
+
     cursor:pointer;
+
+    transition:0.2s;
+    opacity:0.9;
 }
 
+/* thème cohérent */
 .close{ background:#ff5f57; }
 .min{ background:#ffbd2e; }
+.max{ background:#28c840; }
+
+.btn:hover{
+    transform:scale(1.2);
+    opacity:1;
+}
 
 /* contenu */
 .content{
-    padding:20px;
+    padding:22px;
     text-align:center;
     color:white;
 }
@@ -139,22 +162,25 @@ body::before{
     color:white;
 
     padding:12px;
-    border-radius:10px;
+    border-radius:12px;
 
-    background:rgba(0,0,0,0.4);
-    border:1px solid rgba(255,0,0,0.2);
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(10px);
 
     transition:0.2s;
 }
 
 .link:hover{
-    background:rgba(120,0,0,0.5);
+    background:rgba(255,0,0,0.25);
+    border-color:rgba(255,0,0,0.4);
     transform:scale(1.02);
 }
 
 /* états */
 .window.minimized{
-    height:38px;
+    height:42px;
     overflow:hidden;
 }
 
@@ -166,7 +192,7 @@ body::before{
 
 <body>
 
-<!-- bouton pour réouvrir -->
+<!-- bouton ouverture -->
 <div class="open-app" onclick="openWindow()">
     🌐 Mes liens
 </div>
@@ -176,10 +202,13 @@ body::before{
 
     <div class="titlebar" id="dragbar">
 
-        <div class="title">Mes liens</div>
+        <div style="color:white;font-size:13px;font-weight:600;">
+            Mes liens
+        </div>
 
         <div class="controls">
             <div class="btn min" onclick="minimizeWindow()"></div>
+            <div class="btn max" onclick="maximizeWindow()"></div>
             <div class="btn close" onclick="closeWindow()"></div>
         </div>
 
@@ -205,19 +234,24 @@ body::before{
 
 const win = document.getElementById("window");
 
-/* fermer (cache) */
-function closeWindow(){
-    win.classList.add("closed");
-}
-
-/* réouvrir */
+/* ouvrir */
 function openWindow(){
     win.classList.remove("closed");
+}
+
+/* fermer */
+function closeWindow(){
+    win.classList.add("closed");
 }
 
 /* minimiser */
 function minimizeWindow(){
     win.classList.toggle("minimized");
+}
+
+/* maximiser / restaurer */
+function maximizeWindow(){
+    win.classList.toggle("maximized");
 }
 
 /* drag */
@@ -227,6 +261,8 @@ let dragging = false;
 let offsetX, offsetY;
 
 dragbar.addEventListener("mousedown", (e) => {
+    if(win.classList.contains("maximized")) return;
+
     dragging = true;
 
     offsetX = e.clientX - win.offsetLeft;
@@ -240,7 +276,7 @@ document.addEventListener("mousemove", (e) => {
 
     win.style.left = (e.clientX - offsetX) + "px";
     win.style.top = (e.clientY - offsetY) + "px";
-    win.style.transform = "none"; // important après drag
+    win.style.transform = "none";
 });
 
 document.addEventListener("mouseup", () => {
