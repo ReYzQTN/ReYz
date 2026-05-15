@@ -19,6 +19,7 @@ html, body{
     overflow:hidden;
 }
 
+/* background */
 body{
     background:url('background.jpg') center/cover no-repeat;
 }
@@ -30,7 +31,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== MESSAGE ===== */
+/* ===== MESSAGE RESET ===== */
 .open-app{
     position:fixed;
     top:50%;
@@ -39,14 +40,13 @@ body::before{
     width:360px;
     padding:18px;
     border-radius:14px;
-
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.15);
     color:white;
     text-align:center;
     backdrop-filter:blur(14px);
-
     display:none;
+    z-index:10;
 }
 
 .open-app.show{
@@ -56,25 +56,26 @@ body::before{
 .click-here{
     display:inline-block;
     margin-top:8px;
-    padding:5px 12px;
+    padding:4px 10px;
     border-radius:8px;
-
     background:rgba(255,0,0,0.25);
     border:1px solid rgba(255,0,0,0.4);
-    font-weight:800;
     cursor:pointer;
+    font-weight:800;
 }
 
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
-
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:1300px;
-    height:850px;
+    width:1200px;
+    height:800px;
+
+    max-width:96vw;
+    max-height:94vh;
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -90,48 +91,35 @@ body::before{
     overflow:hidden;
 }
 
-/* 🔥 FULLSCREEN VRAI FIX */
+/* ===== FULLSCREEN FIX (IMPORTANT) ===== */
 .window.maximized{
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-
+    top:0 !important;
+    left:0 !important;
     transform:none !important;
 
-    border-radius:0;
+    width:100vw !important;
+    height:100vh !important;
 
-    max-width:none;
-    max-height:none;
+    max-width:none !important;
+    max-height:none !important;
+
+    border-radius:0 !important;
 }
 
-/* réduit */
+/* ===== MINIMIZED ===== */
 .window.minimized .content{
     display:none;
 }
 
-.window.minimized{
-    height:50px;
-}
-
-/* fermé */
-.window.closed{
-    display:none;
-}
-
-/* ===== BAR ===== */
+/* ===== TITLE BAR ===== */
 .titlebar{
     height:50px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:0 18px;
-
-    background:rgba(20,0,0,0.55); /* 🔥 thème rouge */
-    border-bottom:1px solid rgba(255,0,0,0.2);
-
+    padding:0 16px;
+    background:rgba(0,0,0,0.35);
+    border-bottom:1px solid rgba(255,255,255,0.08);
     flex-shrink:0;
 }
 
@@ -141,7 +129,7 @@ body::before{
     font-weight:600;
 }
 
-/* ===== BOUTONS FIXÉS ===== */
+/* ===== BUTTONS FIX + COULEURS PROPRE ===== */
 .controls{
     display:flex;
     gap:10px;
@@ -153,28 +141,28 @@ body::before{
     border-radius:50%;
     cursor:pointer;
     transition:0.2s;
+    border:1px solid rgba(255,255,255,0.25);
 }
 
-/* cohérent thème rouge */
+/* couleurs cohérentes thème */
 .close{
-    background:#ff3b3b;
+    background:#ff4d4d;
 }
 .min{
-    background:#ffb020;
+    background:#ffcc00;
 }
 .max{
-    background:#2cff6b;
+    background:#00d26a;
 }
 
 .btn:hover{
-    transform:scale(1.25);
+    transform:scale(1.2);
     filter:brightness(1.2);
 }
 
 /* ===== CONTENT ===== */
 .content{
     flex:1;
-
     padding:60px;
 
     display:flex;
@@ -187,32 +175,34 @@ body::before{
     overflow:hidden;
 }
 
+/* scroll uniquement fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
 
 /* avatar */
 .pp{
-    width:180px;
-    height:180px;
-    border-radius:20px;
+    width:170px;
+    height:170px;
+    border-radius:18px;
+    object-fit:cover;
 }
 
 .name{
-    font-size:54px;
+    font-size:50px;
     font-weight:900;
 }
 
-/* ===== LINKS ULTRA ADAPTATIFS ===== */
+/* ===== LINKS (IMPORTANT FIX) ===== */
 .links{
     width:100%;
 
-    /* 🔥 suit vraiment la fenêtre */
-    max-width: clamp(500px, 70vw, 1000px);
+    /* s’adapte à la fenêtre */
+    max-width: 900px;
 
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:16px;
 }
 
 .link{
@@ -221,7 +211,7 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:22px;
+    padding:18px;
 
     border-radius:14px;
 
@@ -246,11 +236,13 @@ body::before{
 
 <body>
 
+<!-- RESET SCREEN -->
 <div class="open-app" id="openBtn">
     Bravo tu as cassé le site !<br>
-    Clique <span class="click-here" onclick="openWindow()">ICI</span>
+    Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
 </div>
 
+<!-- WINDOW -->
 <div class="window" id="window">
 
     <div class="titlebar">
