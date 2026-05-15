@@ -19,7 +19,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond */
+/* fond sombre */
 body::before{
     content:"";
     position:absolute;
@@ -30,7 +30,6 @@ body::before{
 /* ===== BOUTON RÉOUVERTURE CENTRÉ ===== */
 .open-app{
     position:absolute;
-
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -45,9 +44,9 @@ body::before{
     cursor:pointer;
 
     backdrop-filter:blur(14px);
+    text-align:center;
 
     display:none;
-    text-align:center;
 }
 
 .open-app.show{
@@ -61,7 +60,6 @@ body::before{
 /* ===== FENÊTRE GLASS ===== */
 .window{
     position:absolute;
-
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -81,7 +79,7 @@ body::before{
     transition:0.25s ease;
 }
 
-/* MAXIMISÉ CORRIGÉ */
+/* maximisé */
 .window.maximized{
     position:fixed;
     top:0;
@@ -119,7 +117,7 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    cursor:grab;
+    cursor:default;
     user-select:none;
 }
 
@@ -128,7 +126,7 @@ body::before{
     gap:8px;
 }
 
-/* boutons glass cohérents avec thème */
+/* ===== BOUTONS STYLE THÈME ===== */
 .btn{
     width:11px;
     height:11px;
@@ -142,40 +140,27 @@ body::before{
     backdrop-filter:blur(10px);
 
     transition:0.2s;
-    position:relative;
 }
 
-/* icône subtile */
-.btn::after{
-    content:"";
-    position:absolute;
-    inset:3px;
-    border-radius:50%;
-    background:rgba(255,255,255,0.25);
-    opacity:0;
-    transition:0.2s;
+.btn:hover{
+    transform:scale(1.2);
 }
 
-/* HOVER global */
-.btn:hover::after{
-    opacity:1;
-}
-
-/* close = danger rouge */
+/* close */
 .close:hover{
     background:rgba(255,80,80,0.25);
     border-color:rgba(255,80,80,0.6);
     box-shadow:0 0 12px rgba(255,0,0,0.35);
 }
 
-/* min = orange soft */
+/* minimize */
 .min:hover{
     background:rgba(255,190,80,0.20);
     border-color:rgba(255,190,80,0.5);
     box-shadow:0 0 10px rgba(255,180,80,0.25);
 }
 
-/* max = green mais désaturé */
+/* maximize */
 .max:hover{
     background:rgba(80,255,140,0.18);
     border-color:rgba(80,255,140,0.5);
@@ -234,7 +219,7 @@ body::before{
 
 <body>
 
-<!-- bouton réouvrir CENTRÉ -->
+<!-- bouton réouverture -->
 <div class="open-app" id="openBtn" onclick="openWindow()">
     Cliquez ici pour faire réapparaître la fenêtre
 </div>
@@ -242,7 +227,7 @@ body::before{
 <!-- fenêtre -->
 <div class="window" id="window">
 
-    <div class="titlebar" id="dragbar">
+    <div class="titlebar">
 
         <div style="color:white;font-size:13px;font-weight:600;">
             Mes liens
@@ -294,54 +279,10 @@ function minimizeWindow(){
     win.classList.toggle("minimized");
 }
 
-/* maximiser corrigé */
+/* maximiser */
 function maximizeWindow(){
-
     win.classList.toggle("maximized");
-
-    if(win.classList.contains("maximized")){
-        // reset propre
-        win.style.left = "0";
-        win.style.top = "0";
-        win.style.transform = "none";
-    } else {
-        // retour centré
-        win.style.left = "50%";
-        win.style.top = "50%";
-        win.style.transform = "translate(-50%, -50%)";
-    }
 }
-
-/* drag */
-const dragbar = document.getElementById("dragbar");
-
-let dragging = false;
-let offsetX, offsetY;
-
-dragbar.addEventListener("mousedown", (e) => {
-
-    if(win.classList.contains("maximized")) return;
-
-    dragging = true;
-
-    offsetX = e.clientX - win.offsetLeft;
-    offsetY = e.clientY - win.offsetTop;
-
-    dragbar.style.cursor = "grabbing";
-});
-
-document.addEventListener("mousemove", (e) => {
-    if(!dragging) return;
-
-    win.style.left = (e.clientX - offsetX) + "px";
-    win.style.top = (e.clientY - offsetY) + "px";
-    win.style.transform = "none";
-});
-
-document.addEventListener("mouseup", () => {
-    dragging = false;
-    dragbar.style.cursor = "grab";
-});
 
 </script>
 
