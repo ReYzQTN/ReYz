@@ -47,7 +47,9 @@ body::before{
     display:none;
 }
 
-.open-app.show{ display:block; }
+.open-app.show{
+    display:block;
+}
 
 .click-here{
     display:inline-block;
@@ -63,12 +65,13 @@ body::before{
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
+
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:1300px;
-    height:850px;
+    width:1200px;
+    height:800px;
 
     max-width:96vw;
     max-height:94vh;
@@ -87,26 +90,34 @@ body::before{
     overflow:hidden;
 }
 
-/* FULLSCREEN FIX */
+/* ===== 🔥 FULLSCREEN FIX CLEAN ===== */
 .window.maximized{
+    position:fixed;
     top:0;
     left:0;
     width:100vw;
     height:100vh;
+
     transform:none !important;
+
+    max-width:none;
+    max-height:none;
+
     border-radius:0;
 }
 
 /* ===== BAR ===== */
 .titlebar{
     height:50px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:0 18px;
+
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
-    flex-shrink:0;
 }
 
 .titlebar div{
@@ -115,7 +126,7 @@ body::before{
     font-weight:600;
 }
 
-/* ===== 🔥 BOUTONS FENÊTRE RESTAURÉS ===== */
+/* ===== 🔥 BOUTONS FONCTIONNELS ===== */
 .controls{
     display:flex;
     gap:10px;
@@ -127,41 +138,40 @@ body::before{
     border-radius:50%;
     cursor:pointer;
     transition:0.2s;
-    border:1px solid rgba(255,255,255,0.25);
 }
 
-/* couleurs mac style */
-.close{
-    background:#ff5f57;
-}
-.min{
-    background:#febc2e;
-}
-.max{
-    background:#28c840;
-}
+/* couleurs cohérentes macOS */
+.close{ background:#ff5f57; }
+.min{ background:#febc2e; }
+.max{ background:#28c840; }
 
 .btn:hover{
     transform:scale(1.2);
-    filter:brightness(1.2);
+    filter:brightness(1.15);
 }
 
 /* ===== CONTENT ===== */
 .content{
     flex:1;
+
     padding:60px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:26px;
+
     color:white;
+
     overflow:hidden;
 }
 
+/* scroll uniquement fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
 
+/* avatar */
 .pp{
     width:180px;
     height:180px;
@@ -174,16 +184,17 @@ body::before{
     font-weight:900;
 }
 
-/* ===== 🔥 LINKS MIEUX AJUSTÉS ===== */
+/* ===== 🔗 LIENS BIEN ALIGNÉS ===== */
 .links{
     width:100%;
 
-    /* suit la taille de la fenêtre de façon fluide */
-    max-width: min(1000px, 92%);
+    max-width:800px;
 
     display:flex;
     flex-direction:column;
     gap:18px;
+
+    align-items:stretch;
 }
 
 .link{
@@ -192,14 +203,14 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:22px;
+    padding:20px;
 
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
 
-    font-size:19px;
+    font-size:18px;
     font-weight:600;
 
     text-align:center;
@@ -225,6 +236,7 @@ body::before{
 <div class="window" id="window">
 
     <div class="titlebar">
+
         <div>Mes liens</div>
 
         <div class="controls">
@@ -232,6 +244,7 @@ body::before{
             <div class="btn min" onclick="minimizeWindow()"></div>
             <div class="btn max" onclick="maximizeWindow()"></div>
         </div>
+
     </div>
 
     <div class="content">
