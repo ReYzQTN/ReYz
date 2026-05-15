@@ -13,22 +13,27 @@
     font-family:system-ui, sans-serif;
 }
 
-body{
-    height:100vh;
+html, body{
+    width:100%;
+    height:100%;
     overflow:hidden;
+}
+
+/* background */
+body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
 body::before{
     content:"";
-    position:absolute;
+    position:fixed;
     inset:0;
     background:rgba(0,0,0,0.55);
 }
 
 /* ===== bouton réouvrir ===== */
 .open-app{
-    position:absolute;
+    position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -43,6 +48,7 @@ body::before{
     cursor:pointer;
 
     backdrop-filter:blur(14px);
+
     display:none;
 }
 
@@ -50,9 +56,10 @@ body::before{
     display:block;
 }
 
-/* ===== FENÊTRE ===== */
+/* ===== FENÊTRE (MODE NORMAL) ===== */
 .window{
     position:fixed;
+
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -77,14 +84,22 @@ body::before{
     flex-direction:column;
 }
 
-/* 🔥 FULLSCREEN PARFAIT */
+/* ===== 🔥 FULLSCREEN PROPRE SANS BUG ===== */
 .window.maximized{
+    position:fixed;
+
     top:0;
     left:0;
+
     width:100vw;
     height:100vh;
-    transform:none;
+
+    transform:none !important; /* 🔥 clé du fix */
+
     border-radius:0;
+
+    max-width:none;
+    max-height:none;
 }
 
 /* minimisé */
@@ -110,8 +125,8 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    user-select:none;
     flex-shrink:0;
+    user-select:none;
 }
 
 .titlebar div{
@@ -120,7 +135,7 @@ body::before{
     font-weight:600;
 }
 
-/* boutons fenêtre */
+/* boutons */
 .controls{
     display:flex;
     gap:8px;
@@ -143,7 +158,7 @@ body::before{
     transform:scale(1.2);
 }
 
-/* colors */
+/* couleurs hover */
 .close:hover{
     background:rgba(255,80,80,0.25);
 }
@@ -167,10 +182,10 @@ body::before{
 
     color:white;
 
-    overflow:hidden; /* ❌ pas de scroll ici */
+    overflow:hidden;
 }
 
-/* 🔥 SCROLL UNIQUEMENT EN MODE MAXIMISÉ */
+/* 🔥 SCROLL UNIQUEMENT EN FULLSCREEN */
 .window.maximized .content{
     overflow-y:auto;
 }
@@ -188,19 +203,18 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LINKS FULL WIDTH FIX ===== */
+/* ===== LINKS FIX ULTRA STABLE ===== */
 .links{
     width:100%;
+    max-width:520px; /* 🔥 plus large ET stable */
 
     display:flex;
     flex-direction:column;
     gap:14px;
 }
 
-/* 🔥 IMPORTANT FIX */
 .link{
     width:100%;
-
     display:block;
 
     text-decoration:none;
