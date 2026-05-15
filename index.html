@@ -27,26 +27,36 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== BOUTON RÉOUVERTURE CENTRÉ ===== */
+/* ===== BOUTON RÉOUVERTURE AGRANDI ===== */
 .open-app{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    padding:14px 18px;
-    border-radius:14px;
+    padding:18px 26px;
+
+    border-radius:16px;
 
     background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.18);
 
     color:white;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:0.3px;
+
     cursor:pointer;
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(16px);
+
     text-align:center;
 
     display:none;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+    transition:0.25s;
 }
 
 .open-app.show{
@@ -55,6 +65,9 @@ body::before{
 
 .open-app:hover{
     background:rgba(255,0,0,0.25);
+    border-color:rgba(255,0,0,0.4);
+    transform:translate(-50%, -50%) scale(1.03);
+    box-shadow:0 0 18px rgba(255,0,0,0.25);
 }
 
 /* ===== FENÊTRE GLASS ===== */
@@ -117,7 +130,6 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    cursor:default;
     user-select:none;
 }
 
@@ -126,7 +138,7 @@ body::before{
     gap:8px;
 }
 
-/* ===== BOUTONS STYLE THÈME ===== */
+/* ===== BOUTONS THÈME GLASS ===== */
 .btn{
     width:11px;
     height:11px;
@@ -153,14 +165,14 @@ body::before{
     box-shadow:0 0 12px rgba(255,0,0,0.35);
 }
 
-/* minimize */
+/* min */
 .min:hover{
     background:rgba(255,190,80,0.20);
     border-color:rgba(255,190,80,0.5);
     box-shadow:0 0 10px rgba(255,180,80,0.25);
 }
 
-/* maximize */
+/* max */
 .max:hover{
     background:rgba(80,255,140,0.18);
     border-color:rgba(80,255,140,0.5);
