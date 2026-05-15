@@ -19,11 +19,10 @@ body{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* Overlay léger pour lisibilité sans tuer le fond */
+/* Overlay */
 body::before{
     content:"";
     position:absolute;
@@ -34,6 +33,36 @@ body::before{
         rgba(0,0,0,0.55)
     );
     z-index:0;
+}
+
+/* NAVBAR */
+.navbar{
+    position:absolute;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+
+    display:flex;
+    gap:20px;
+
+    background:rgba(0,0,0,0.4);
+    padding:10px 18px;
+    border-radius:12px;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.2s;
+}
+
+.navbar a:hover{
+    color:#ff0000;
+    text-shadow:0 0 10px rgba(255,0,0,0.6);
 }
 
 .container{
@@ -75,40 +104,26 @@ body::before{
     gap:14px;
 }
 
-/* 🔥 LINKS + GLOW */
 .link{
     text-decoration:none;
-
     color:white;
-
     text-align:center;
-
     padding:18px;
-
     border-radius:16px;
-
     background:rgba(0,0,0,0.45);
-
     border:1px solid rgba(255,0,0,0.15);
-
     backdrop-filter:blur(10px);
-
     font-size:20px;
     font-weight:bold;
-
     transition:0.25s;
 }
 
 .link:hover{
     transform:translateY(-3px) scale(1.02);
-
     background:rgba(120,0,0,0.45);
-
     border-color:#ff0000;
-
-    box-shadow:
-    0 0 18px rgba(255,0,0,0.4),
-    0 0 40px rgba(255,0,0,0.2);
+    box-shadow:0 0 18px rgba(255,0,0,0.4),
+                0 0 40px rgba(255,0,0,0.2);
 }
 
 .footer{
@@ -120,6 +135,11 @@ body::before{
 </head>
 
 <body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <a href="#">Mes liens</a>
+</div>
 
 <div class="container">
 
