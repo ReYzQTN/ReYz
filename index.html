@@ -56,7 +56,7 @@ body::before{
     display:block;
 }
 
-/* ===== FENÊTRE (MODE NORMAL) ===== */
+/* ===== FENÊTRE ===== */
 .window{
     position:fixed;
 
@@ -84,17 +84,16 @@ body::before{
     flex-direction:column;
 }
 
-/* ===== 🔥 FULLSCREEN PROPRE SANS BUG ===== */
+/* ===== 🔥 FULLSCREEN FIX ULTRA IMPORTANT ===== */
 .window.maximized{
     position:fixed;
-
     top:0;
     left:0;
 
     width:100vw;
     height:100vh;
 
-    transform:none !important; /* 🔥 clé du fix */
+    transform:none !important;
 
     border-radius:0;
 
@@ -135,7 +134,7 @@ body::before{
     font-weight:600;
 }
 
-/* boutons */
+/* boutons fenêtre */
 .controls{
     display:flex;
     gap:8px;
@@ -158,7 +157,6 @@ body::before{
     transform:scale(1.2);
 }
 
-/* couleurs hover */
 .close:hover{
     background:rgba(255,80,80,0.25);
 }
@@ -185,12 +183,11 @@ body::before{
     overflow:hidden;
 }
 
-/* 🔥 SCROLL UNIQUEMENT EN FULLSCREEN */
+/* scroll seulement en fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
 
-/* avatar */
 .pp{
     width:140px;
     height:140px;
@@ -203,10 +200,10 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LINKS FIX ULTRA STABLE ===== */
+/* ===== LIENS (INCHANGÉS) ===== */
 .links{
     width:100%;
-    max-width:520px; /* 🔥 plus large ET stable */
+    max-width:420px;
 
     display:flex;
     flex-direction:column;
@@ -215,7 +212,6 @@ body::before{
 
 .link{
     width:100%;
-    display:block;
 
     text-decoration:none;
     color:white;
