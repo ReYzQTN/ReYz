@@ -19,7 +19,6 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond sombre */
 body::before{
     content:"";
     position:absolute;
@@ -27,7 +26,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* bouton réouverture */
+/* bouton réouvrir */
 .open-app{
     position:absolute;
     top:50%;
@@ -57,7 +56,7 @@ body::before{
     background:rgba(255,0,0,0.25);
 }
 
-/* fenêtre */
+/* ===== FENÊTRE ===== */
 .window{
     position:absolute;
     top:50%;
@@ -77,8 +76,6 @@ body::before{
     box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
     overflow:hidden;
-
-    transition:0.25s ease;
 }
 
 /* maximisé */
@@ -119,7 +116,6 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    cursor:default;
     user-select:none;
 }
 
@@ -154,26 +150,28 @@ body::before{
     transform:scale(1.2);
 }
 
-/* couleurs hover */
+/* close */
 .close:hover{
     background:rgba(255,80,80,0.25);
     border-color:rgba(255,80,80,0.6);
     box-shadow:0 0 12px rgba(255,0,0,0.35);
 }
 
+/* min */
 .min:hover{
     background:rgba(255,190,80,0.20);
     border-color:rgba(255,190,80,0.5);
     box-shadow:0 0 10px rgba(255,180,80,0.25);
 }
 
+/* max */
 .max:hover{
     background:rgba(80,255,140,0.18);
     border-color:rgba(80,255,140,0.5);
     box-shadow:0 0 10px rgba(80,255,140,0.25);
 }
 
-/* contenu */
+/* ===== CONTENU ===== */
 .content{
     padding:40px;
     text-align:center;
@@ -195,28 +193,26 @@ body::before{
 .name{
     font-size:42px;
     font-weight:900;
-    letter-spacing:1px;
 }
 
-/* ===== LIENS AGRANDIS ===== */
+/* ===== LIENS AJUSTÉS À LA LARGEUR ===== */
 .links{
     width:100%;
-    max-width:650px;   /* 🔥 plus large pour s’adapter à la fenêtre */
 
     display:flex;
     flex-direction:column;
     gap:16px;
+
+    align-items:stretch; /* 🔥 prend toute la largeur */
 }
 
-/* boutons liens full width */
 .link{
-    width:100%;        /* 🔥 prend toute la largeur */
-    text-align:center;
+    width:100%; /* 🔥 IMPORTANT : plein width fenêtre */
 
     text-decoration:none;
     color:white;
 
-    padding:18px;      /* 🔥 plus grand */
+    padding:18px 22px; /* 🔥 plus large visuellement */
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
@@ -226,8 +222,10 @@ body::before{
 
     transition:0.2s;
 
-    font-size:17px;
-    font-weight:700;
+    font-size:16px;
+    font-weight:600;
+
+    text-align:center;
 }
 
 .link:hover{
@@ -240,13 +238,16 @@ body::before{
 
 <body>
 
+<!-- bouton réouvrir -->
 <div class="open-app" id="openBtn" onclick="openWindow()">
     Cliquez ici pour faire réapparaître la fenêtre
 </div>
 
+<!-- fenêtre -->
 <div class="window" id="window">
 
     <div class="titlebar">
+
         <div>Mes liens</div>
 
         <div class="controls">
@@ -254,6 +255,7 @@ body::before{
             <div class="btn max" onclick="maximizeWindow()"></div>
             <div class="btn close" onclick="closeWindow()"></div>
         </div>
+
     </div>
 
     <div class="content">
@@ -277,24 +279,20 @@ body::before{
 const win = document.getElementById("window");
 const openBtn = document.getElementById("openBtn");
 
-/* ouvrir */
 function openWindow(){
     win.classList.remove("closed");
     openBtn.classList.remove("show");
 }
 
-/* fermer */
 function closeWindow(){
     win.classList.add("closed");
     openBtn.classList.add("show");
 }
 
-/* minimiser */
 function minimizeWindow(){
     win.classList.toggle("minimized");
 }
 
-/* maximiser */
 function maximizeWindow(){
     win.classList.toggle("maximized");
 }
