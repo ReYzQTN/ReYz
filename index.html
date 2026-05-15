@@ -28,7 +28,6 @@ body::before{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.55);
-    z-index:0;
 }
 
 /* ===== MESSAGE ===== */
@@ -49,9 +48,7 @@ body::before{
     z-index:999;
 }
 
-.open-app.show{
-    display:block;
-}
+.open-app.show{ display:block; }
 
 .click-here{
     display:inline-block;
@@ -92,22 +89,24 @@ body::before{
     z-index:10;
 }
 
-/* FULLSCREEN FIX */
+/* FULLSCREEN */
 .window.maximized{
     top:0;
     left:0;
     transform:none !important;
-
     width:100vw !important;
     height:100vh !important;
-
-    max-width:none !important;
-    max-height:none !important;
-
     border-radius:0 !important;
 }
 
-/* CLOSED FIX (IMPORTANT) */
+/* 🔥 MINIMIZE FIX (IMPORTANT) */
+.window.minimized{
+    height:50px !important;
+    width:350px;
+    overflow:hidden;
+}
+
+/* CLOSED */
 .window.closed{
     display:none !important;
 }
@@ -122,7 +121,6 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
     flex-shrink:0;
-    z-index:2;
 }
 
 .titlebar div{
@@ -147,7 +145,6 @@ body::before{
     transition:0.2s;
 }
 
-/* hover glass */
 .close:hover{ background:rgba(255,80,80,0.4); }
 .min:hover{ background:rgba(255,200,80,0.4); }
 .max:hover{ background:rgba(80,255,140,0.4); }
@@ -165,8 +162,6 @@ body::before{
     align-items:center;
     gap:26px;
     color:white;
-
-    /* 🔥 IMPORTANT FIX SCROLL */
     overflow-y:auto;
 }
 
@@ -183,15 +178,14 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LINKS FIX ===== */
+/* LINKS */
 .links{
     width:100%;
     max-width:900px;
     display:flex;
     flex-direction:column;
     gap:18px;
-
-    padding-bottom:40px; /* important pour scroll */
+    padding-bottom:40px;
 }
 
 .link{
