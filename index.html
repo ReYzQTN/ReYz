@@ -128,20 +128,58 @@ body::before{
     gap:8px;
 }
 
+/* boutons glass cohérents avec thème */
 .btn{
-    width:12px;
-    height:12px;
+    width:11px;
+    height:11px;
     border-radius:50%;
+
     cursor:pointer;
+
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter:blur(10px);
+
+    transition:0.2s;
+    position:relative;
+}
+
+/* icône subtile */
+.btn::after{
+    content:"";
+    position:absolute;
+    inset:3px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    opacity:0;
     transition:0.2s;
 }
 
-.close{ background:#ff5f57; }
-.min{ background:#ffbd2e; }
-.max{ background:#28c840; }
+/* HOVER global */
+.btn:hover::after{
+    opacity:1;
+}
 
-.btn:hover{
-    transform:scale(1.2);
+/* close = danger rouge */
+.close:hover{
+    background:rgba(255,80,80,0.25);
+    border-color:rgba(255,80,80,0.6);
+    box-shadow:0 0 12px rgba(255,0,0,0.35);
+}
+
+/* min = orange soft */
+.min:hover{
+    background:rgba(255,190,80,0.20);
+    border-color:rgba(255,190,80,0.5);
+    box-shadow:0 0 10px rgba(255,180,80,0.25);
+}
+
+/* max = green mais désaturé */
+.max:hover{
+    background:rgba(80,255,140,0.18);
+    border-color:rgba(80,255,140,0.5);
+    box-shadow:0 0 10px rgba(80,255,140,0.25);
 }
 
 /* contenu */
