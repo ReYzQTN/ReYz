@@ -33,6 +33,7 @@ body::before{
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
+
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -58,13 +59,21 @@ body::before{
     z-index:10;
 }
 
-/* FULLSCREEN */
+/* 🔥 FULLSCREEN FIX (100% écran réel) */
 .window.maximized{
-    top:0;
-    left:0;
-    transform:none !important;
+    position:fixed !important;
+
+    top:0 !important;
+    left:0 !important;
+
     width:100vw !important;
     height:100vh !important;
+
+    max-width:none !important;
+    max-height:none !important;
+
+    transform:none !important;
+
     border-radius:0 !important;
 }
 
@@ -181,7 +190,7 @@ body::before{
     transform:scale(1.02);
 }
 
-/* ===== 🔥 FIX MESSAGE VISIBILITÉ ===== */
+/* ===== MESSAGE ===== */
 .open-app{
     position:fixed;
     top:50%;
@@ -202,8 +211,6 @@ body::before{
     backdrop-filter:blur(14px);
 
     display:none;
-
-    /* 🔥 IMPORTANT FIX */
     z-index:99999;
 }
 
