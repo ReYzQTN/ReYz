@@ -19,7 +19,6 @@ html, body{
     overflow:hidden;
 }
 
-/* background */
 body{
     background:url('background.jpg') center/cover no-repeat;
 }
@@ -31,7 +30,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== MESSAGE RESET ===== */
+/* ===== MESSAGE ===== */
 .open-app{
     position:fixed;
     top:50%;
@@ -46,7 +45,6 @@ body::before{
     text-align:center;
     backdrop-filter:blur(14px);
     display:none;
-    z-index:10;
 }
 
 .open-app.show{
@@ -67,12 +65,13 @@ body::before{
 /* ===== WINDOW ===== */
 .window{
     position:fixed;
+
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:1200px;
-    height:800px;
+    width:1300px;
+    height:850px;
 
     max-width:96vw;
     max-height:94vh;
@@ -91,7 +90,7 @@ body::before{
     overflow:hidden;
 }
 
-/* ===== FULLSCREEN FIX (IMPORTANT) ===== */
+/* 🔥 FULLSCREEN FIX (IMPORTANT) */
 .window.maximized{
     top:0 !important;
     left:0 !important;
@@ -106,21 +105,21 @@ body::before{
     border-radius:0 !important;
 }
 
-/* ===== MINIMIZED ===== */
+/* minimized */
 .window.minimized .content{
     display:none;
 }
 
-/* ===== TITLE BAR ===== */
+/* ===== BAR ===== */
 .titlebar{
-    height:50px;
+    height:52px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 16px;
-    background:rgba(0,0,0,0.35);
+    padding:0 18px;
+
+    background:rgba(10,10,10,0.6);
     border-bottom:1px solid rgba(255,255,255,0.08);
-    flex-shrink:0;
 }
 
 .titlebar div{
@@ -129,7 +128,7 @@ body::before{
     font-weight:600;
 }
 
-/* ===== BUTTONS FIX + COULEURS PROPRE ===== */
+/* ===== 🔥 BOUTONS FIXÉS + NOUVELLE COULEUR ===== */
 .controls{
     display:flex;
     gap:10px;
@@ -141,18 +140,20 @@ body::before{
     border-radius:50%;
     cursor:pointer;
     transition:0.2s;
-    border:1px solid rgba(255,255,255,0.25);
+    border:1px solid rgba(255,255,255,0.2);
 }
 
-/* couleurs cohérentes thème */
+/* NOUVEAU THÈME (plus dark red UI) */
 .close{
-    background:#ff4d4d;
+    background:#ff3b3b;
 }
+
 .min{
-    background:#ffcc00;
+    background:#ffb020;
 }
+
 .max{
-    background:#00d26a;
+    background:#35d07f;
 }
 
 .btn:hover{
@@ -168,7 +169,7 @@ body::before{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:26px;
+    gap:22px;
 
     color:white;
 
@@ -180,33 +181,37 @@ body::before{
     overflow-y:auto;
 }
 
-/* avatar */
 .pp{
-    width:170px;
-    height:170px;
-    border-radius:18px;
+    width:180px;
+    height:180px;
+    border-radius:20px;
     object-fit:cover;
 }
 
 .name{
-    font-size:50px;
+    font-size:54px;
     font-weight:900;
 }
 
-/* ===== LINKS (IMPORTANT FIX) ===== */
+/* ===== 🔥 LINKS FIX COMPLET ===== */
 .links{
     width:100%;
 
-    /* s’adapte à la fenêtre */
-    max-width: 900px;
+    max-width: min(1000px, 92%);
 
     display:flex;
     flex-direction:column;
-    gap:16px;
+
+    /* important pour éviter disparition */
+    gap:14px;
+
+    overflow:visible;
 }
 
 .link{
     width:100%;
+
+    display:block;
 
     text-decoration:none;
     color:white;
@@ -236,16 +241,15 @@ body::before{
 
 <body>
 
-<!-- RESET SCREEN -->
 <div class="open-app" id="openBtn">
     Bravo tu as cassé le site !<br>
     Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
 </div>
 
-<!-- WINDOW -->
 <div class="window" id="window">
 
     <div class="titlebar">
+
         <div>Mes liens</div>
 
         <div class="controls">
@@ -253,6 +257,7 @@ body::before{
             <div class="btn min" onclick="minimizeWindow()"></div>
             <div class="btn max" onclick="maximizeWindow()"></div>
         </div>
+
     </div>
 
     <div class="content">
