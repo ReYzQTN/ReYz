@@ -19,7 +19,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond sombre */
+/* fond */
 body::before{
     content:"";
     position:absolute;
@@ -27,13 +27,13 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* bouton ouverture */
+/* ===== BOUTON RÉOUVERTURE ===== */
 .open-app{
     position:absolute;
     top:20px;
     left:20px;
 
-    padding:10px 14px;
+    padding:12px 14px;
     border-radius:12px;
 
     background:rgba(255,255,255,0.08);
@@ -44,10 +44,16 @@ body::before{
 
     backdrop-filter:blur(12px);
     transition:0.2s;
+
+    display:none; /* caché par défaut */
+}
+
+.open-app.show{
+    display:block;
 }
 
 .open-app:hover{
-    background:rgba(255,0,0,0.2);
+    background:rgba(255,0,0,0.25);
 }
 
 /* ===== FENÊTRE GLASS ===== */
@@ -59,7 +65,6 @@ body::before{
     transform:translate(-50%, -50%);
 
     width:440px;
-    height:auto;
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -74,7 +79,7 @@ body::before{
     transition:0.25s ease;
 }
 
-/* MODE MAXIMISÉ */
+/* maximisé */
 .window.maximized{
     top:0;
     left:0;
@@ -82,10 +87,22 @@ body::before{
 
     width:100%;
     height:100%;
+
     border-radius:0;
 }
 
-/* BARRE */
+/* minimisé */
+.window.minimized{
+    height:42px;
+    overflow:hidden;
+}
+
+/* fermé */
+.window.closed{
+    display:none;
+}
+
+/* barre */
 .titlebar{
     height:42px;
 
@@ -99,11 +116,9 @@ body::before{
     border-bottom:1px solid rgba(255,255,255,0.08);
 
     cursor:grab;
-
     user-select:none;
 }
 
-/* boutons style mac + glass */
 .controls{
     display:flex;
     gap:8px;
@@ -113,21 +128,16 @@ body::before{
     width:12px;
     height:12px;
     border-radius:50%;
-
     cursor:pointer;
-
     transition:0.2s;
-    opacity:0.9;
 }
 
-/* thème cohérent */
 .close{ background:#ff5f57; }
 .min{ background:#ffbd2e; }
 .max{ background:#28c840; }
 
 .btn:hover{
     transform:scale(1.2);
-    opacity:1;
 }
 
 /* contenu */
@@ -177,24 +187,14 @@ body::before{
     border-color:rgba(255,0,0,0.4);
     transform:scale(1.02);
 }
-
-/* états */
-.window.minimized{
-    height:42px;
-    overflow:hidden;
-}
-
-.window.closed{
-    display:none;
-}
 </style>
 </head>
 
 <body>
 
-<!-- bouton ouverture -->
-<div class="open-app" onclick="openWindow()">
-    🌐 Mes liens
+<!-- bouton réouvrir -->
+<div class="open-app" id="openBtn" onclick="openWindow()">
+    Cliquez ici pour faire réapparaître la fenêtre
 </div>
 
 <!-- fenêtre -->
@@ -221,7 +221,7 @@ body::before{
 
         <div class="links">
             <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
-            <a class="link" href="https://www.twitch.tv/reyzqtn" target="_blank">Twitch</a>
+            <a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">Twitch</a>
             <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
             <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
         </div>
@@ -233,15 +233,18 @@ body::before{
 <script>
 
 const win = document.getElementById("window");
+const openBtn = document.getElementById("openBtn");
 
 /* ouvrir */
 function openWindow(){
     win.classList.remove("closed");
+    openBtn.classList.remove("show");
 }
 
 /* fermer */
 function closeWindow(){
     win.classList.add("closed");
+    openBtn.classList.add("show");
 }
 
 /* minimiser */
@@ -249,9 +252,17 @@ function minimizeWindow(){
     win.classList.toggle("minimized");
 }
 
-/* maximiser / restaurer */
+/* maximiser + recentrer */
 function maximizeWindow(){
+
     win.classList.toggle("maximized");
+
+    // 🔥 si on vient de maximiser → reset position (centré propre)
+    if(win.classList.contains("maximized")){
+        win.style.left = "50%";
+        win.style.top = "50%";
+        win.style.transform = "none";
+    }
 }
 
 /* drag */
