@@ -10,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family:system-ui, sans-serif;
 }
 
 body{
@@ -20,21 +20,19 @@ body{
     align-items:center;
     overflow:hidden;
 
-    /* Background propre + moderne */
-    background:
-        radial-gradient(circle at top, rgba(255,0,0,0.12), transparent 40%),
-        radial-gradient(circle at bottom, rgba(0,0,0,0.9), #000 60%),
-        url('background.jpg');
-    background-size:cover;
-    background-position:center;
+    background:url('background.jpg') center/cover no-repeat;
 }
 
-/* Overlay léger uniquement pour lisibilité */
+/* 🔥 overlay BEAUCOUP plus léger */
 body::before{
     content:"";
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.55);
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.55)
+    );
     z-index:0;
 }
 
@@ -51,77 +49,64 @@ body::before{
     gap:18px;
 }
 
-/* Avatar */
 .pp{
     width:140px;
     height:140px;
     border-radius:16px;
     object-fit:cover;
 
-    border:1px solid rgba(255,255,255,0.15);
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* Nom */
 .name{
     color:white;
     font-size:48px;
     font-weight:800;
     letter-spacing:2px;
 
-    text-shadow:0 6px 20px rgba(0,0,0,0.6);
+    text-shadow:0 6px 18px rgba(0,0,0,0.6);
 }
 
-/* Links container */
 .links{
     width:100%;
     display:flex;
     flex-direction:column;
     gap:14px;
-    margin-top:10px;
 }
 
-/* Glassmorphism propre uniquement ici */
+/* glass léger MAIS lisible */
 .link{
     text-decoration:none;
     color:white;
     text-align:center;
 
-    padding:16px 18px;
+    padding:16px;
     border-radius:14px;
 
-    background:rgba(255,255,255,0.06);
+    background:rgba(255,255,255,0.07);
     border:1px solid rgba(255,255,255,0.12);
 
-    /* blur LOCAL uniquement (pas global) */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
 
     font-size:18px;
     font-weight:600;
 
-    transition:0.25s ease;
+    transition:0.2s ease;
 
-    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
 }
 
 .link:hover{
     transform:translateY(-2px);
-
-    background:rgba(255,0,0,0.12);
-    border-color:rgba(255,0,0,0.4);
-
-    box-shadow:
-        0 10px 25px rgba(255,0,0,0.15),
-        0 8px 20px rgba(0,0,0,0.4);
+    background:rgba(255,255,255,0.12);
+    border-color:rgba(255,255,255,0.25);
 }
 
-/* Footer discret */
 .footer{
     margin-top:8px;
-    color:rgba(255,255,255,0.4);
+    color:rgba(255,255,255,0.45);
     font-size:12px;
-    letter-spacing:1px;
 }
 </style>
 </head>
@@ -131,7 +116,6 @@ body::before{
 <div class="container">
 
     <img src="pp.jpg" class="pp">
-
     <div class="name">ReYz</div>
 
     <div class="links">
