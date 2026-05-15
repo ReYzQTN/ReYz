@@ -19,7 +19,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond */
+/* fond sombre */
 body::before{
     content:"";
     position:absolute;
@@ -27,7 +27,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* bouton réouvrir */
+/* bouton réouverture */
 .open-app{
     position:absolute;
     top:50%;
@@ -65,6 +65,7 @@ body::before{
     transform:translate(-50%, -50%);
 
     width:900px;
+    max-width:95vw;
     height:600px;
 
     background:rgba(255,255,255,0.06);
@@ -76,6 +77,8 @@ body::before{
     box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
     overflow:hidden;
+
+    transition:0.25s ease;
 }
 
 /* maximisé */
@@ -83,9 +86,12 @@ body::before{
     position:fixed;
     top:0;
     left:0;
+
     width:100vw;
     height:100vh;
+
     transform:none;
+
     border-radius:0;
 }
 
@@ -100,37 +106,38 @@ body::before{
     display:none;
 }
 
-/* ===== BARRE ===== */
+/* barre */
 .titlebar{
-    height:52px; /* 🔥 légèrement plus grand pour suivre les boutons */
+    height:44px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 16px;
+    padding:0 14px;
 
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
+
+    cursor:default;
+    user-select:none;
 }
 
 .titlebar div{
     color:white;
-    font-size:14px;
+    font-size:13px;
     font-weight:600;
 }
 
-/* ===== BOUTONS AGRANDIS ===== */
+/* boutons fenêtre */
 .controls{
     display:flex;
-    gap:10px;
+    gap:8px;
 }
 
-/* boutons plus gros */
 .btn{
-    width:14px;   /* 🔥 avant 11px */
-    height:14px;
-
+    width:11px;
+    height:11px;
     border-radius:50%;
 
     cursor:pointer;
@@ -144,28 +151,26 @@ body::before{
 }
 
 .btn:hover{
-    transform:scale(1.25);
+    transform:scale(1.2);
 }
 
-/* close */
+/* couleurs hover */
 .close:hover{
     background:rgba(255,80,80,0.25);
     border-color:rgba(255,80,80,0.6);
-    box-shadow:0 0 14px rgba(255,0,0,0.4);
+    box-shadow:0 0 12px rgba(255,0,0,0.35);
 }
 
-/* min */
 .min:hover{
     background:rgba(255,190,80,0.20);
     border-color:rgba(255,190,80,0.5);
-    box-shadow:0 0 12px rgba(255,180,80,0.25);
+    box-shadow:0 0 10px rgba(255,180,80,0.25);
 }
 
-/* max */
 .max:hover{
     background:rgba(80,255,140,0.18);
     border-color:rgba(80,255,140,0.5);
-    box-shadow:0 0 12px rgba(80,255,140,0.25);
+    box-shadow:0 0 10px rgba(80,255,140,0.25);
 }
 
 /* contenu */
@@ -190,22 +195,28 @@ body::before{
 .name{
     font-size:42px;
     font-weight:900;
+    letter-spacing:1px;
 }
 
+/* ===== LIENS AGRANDIS ===== */
 .links{
     width:100%;
-    max-width:420px;
+    max-width:650px;   /* 🔥 plus large pour s’adapter à la fenêtre */
 
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:16px;
 }
 
+/* boutons liens full width */
 .link{
+    width:100%;        /* 🔥 prend toute la largeur */
+    text-align:center;
+
     text-decoration:none;
     color:white;
 
-    padding:16px;
+    padding:18px;      /* 🔥 plus grand */
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
@@ -214,8 +225,9 @@ body::before{
     backdrop-filter:blur(10px);
 
     transition:0.2s;
-    font-size:16px;
-    font-weight:600;
+
+    font-size:17px;
+    font-weight:700;
 }
 
 .link:hover{
@@ -235,7 +247,6 @@ body::before{
 <div class="window" id="window">
 
     <div class="titlebar">
-
         <div>Mes liens</div>
 
         <div class="controls">
@@ -243,7 +254,6 @@ body::before{
             <div class="btn max" onclick="maximizeWindow()"></div>
             <div class="btn close" onclick="closeWindow()"></div>
         </div>
-
     </div>
 
     <div class="content">
