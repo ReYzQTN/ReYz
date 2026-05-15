@@ -39,11 +39,13 @@ body::before{
     width:360px;
     padding:18px;
     border-radius:14px;
+
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.15);
     color:white;
     text-align:center;
     backdrop-filter:blur(14px);
+
     display:none;
 }
 
@@ -54,12 +56,13 @@ body::before{
 .click-here{
     display:inline-block;
     margin-top:8px;
-    padding:4px 10px;
+    padding:5px 12px;
     border-radius:8px;
+
     background:rgba(255,0,0,0.25);
     border:1px solid rgba(255,0,0,0.4);
-    cursor:pointer;
     font-weight:800;
+    cursor:pointer;
 }
 
 /* ===== WINDOW ===== */
@@ -70,11 +73,8 @@ body::before{
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:1200px;
-    height:800px;
-
-    max-width:96vw;
-    max-height:94vh;
+    width:1300px;
+    height:850px;
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -90,9 +90,8 @@ body::before{
     overflow:hidden;
 }
 
-/* ===== 🔥 FULLSCREEN FIX CLEAN ===== */
+/* 🔥 FULLSCREEN VRAI FIX */
 .window.maximized{
-    position:fixed;
     top:0;
     left:0;
     width:100vw;
@@ -100,10 +99,24 @@ body::before{
 
     transform:none !important;
 
+    border-radius:0;
+
     max-width:none;
     max-height:none;
+}
 
-    border-radius:0;
+/* réduit */
+.window.minimized .content{
+    display:none;
+}
+
+.window.minimized{
+    height:50px;
+}
+
+/* fermé */
+.window.closed{
+    display:none;
 }
 
 /* ===== BAR ===== */
@@ -116,8 +129,10 @@ body::before{
 
     padding:0 18px;
 
-    background:rgba(0,0,0,0.35);
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    background:rgba(20,0,0,0.55); /* 🔥 thème rouge */
+    border-bottom:1px solid rgba(255,0,0,0.2);
+
+    flex-shrink:0;
 }
 
 .titlebar div{
@@ -126,7 +141,7 @@ body::before{
     font-weight:600;
 }
 
-/* ===== 🔥 BOUTONS FONCTIONNELS ===== */
+/* ===== BOUTONS FIXÉS ===== */
 .controls{
     display:flex;
     gap:10px;
@@ -140,14 +155,20 @@ body::before{
     transition:0.2s;
 }
 
-/* couleurs cohérentes macOS */
-.close{ background:#ff5f57; }
-.min{ background:#febc2e; }
-.max{ background:#28c840; }
+/* cohérent thème rouge */
+.close{
+    background:#ff3b3b;
+}
+.min{
+    background:#ffb020;
+}
+.max{
+    background:#2cff6b;
+}
 
 .btn:hover{
-    transform:scale(1.2);
-    filter:brightness(1.15);
+    transform:scale(1.25);
+    filter:brightness(1.2);
 }
 
 /* ===== CONTENT ===== */
@@ -166,7 +187,6 @@ body::before{
     overflow:hidden;
 }
 
-/* scroll uniquement fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
@@ -176,7 +196,6 @@ body::before{
     width:180px;
     height:180px;
     border-radius:20px;
-    object-fit:cover;
 }
 
 .name{
@@ -184,17 +203,16 @@ body::before{
     font-weight:900;
 }
 
-/* ===== 🔗 LIENS BIEN ALIGNÉS ===== */
+/* ===== LINKS ULTRA ADAPTATIFS ===== */
 .links{
     width:100%;
 
-    max-width:800px;
+    /* 🔥 suit vraiment la fenêtre */
+    max-width: clamp(500px, 70vw, 1000px);
 
     display:flex;
     flex-direction:column;
     gap:18px;
-
-    align-items:stretch;
 }
 
 .link{
@@ -203,7 +221,7 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:20px;
+    padding:22px;
 
     border-radius:14px;
 
@@ -230,13 +248,12 @@ body::before{
 
 <div class="open-app" id="openBtn">
     Bravo tu as cassé le site !<br>
-    Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
+    Clique <span class="click-here" onclick="openWindow()">ICI</span>
 </div>
 
 <div class="window" id="window">
 
     <div class="titlebar">
-
         <div>Mes liens</div>
 
         <div class="controls">
@@ -244,7 +261,6 @@ body::before{
             <div class="btn min" onclick="minimizeWindow()"></div>
             <div class="btn max" onclick="maximizeWindow()"></div>
         </div>
-
     </div>
 
     <div class="content">
