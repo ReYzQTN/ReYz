@@ -84,9 +84,10 @@ body::before{
     flex-direction:column;
 }
 
-/* ===== 🔥 FULLSCREEN FIX ULTRA IMPORTANT ===== */
+/* 🔥 FULLSCREEN FIX PROPRE */
 .window.maximized{
     position:fixed;
+
     top:0;
     left:0;
 
@@ -124,8 +125,8 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    flex-shrink:0;
     user-select:none;
+    flex-shrink:0;
 }
 
 .titlebar div{
@@ -167,7 +168,7 @@ body::before{
     background:rgba(80,255,140,0.18);
 }
 
-/* ===== CONTENT ===== */
+/* ===== CONTENU ===== */
 .content{
     flex:1;
 
@@ -183,11 +184,12 @@ body::before{
     overflow:hidden;
 }
 
-/* scroll seulement en fullscreen */
+/* scroll uniquement fullscreen */
 .window.maximized .content{
     overflow-y:auto;
 }
 
+/* avatar */
 .pp{
     width:140px;
     height:140px;
@@ -200,10 +202,9 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LIENS (INCHANGÉS) ===== */
+/* ===== LINKS (INCHANGÉ EXACTEMENT) ===== */
 .links{
     width:100%;
-    max-width:420px;
 
     display:flex;
     flex-direction:column;
