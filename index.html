@@ -19,6 +19,7 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
+/* fond */
 body::before{
     content:"";
     position:absolute;
@@ -26,7 +27,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* ===== BOUTON RÉOUVERTURE ===== */
+/* bouton réouvrir */
 .open-app{
     position:absolute;
     top:50%;
@@ -46,7 +47,6 @@ body::before{
     text-align:center;
 
     display:none;
-    font-size:14px;
 }
 
 .open-app.show{
@@ -57,7 +57,7 @@ body::before{
     background:rgba(255,0,0,0.25);
 }
 
-/* ===== FENÊTRE ===== */
+/* fenêtre */
 .window{
     position:absolute;
     top:50%;
@@ -65,7 +65,6 @@ body::before{
     transform:translate(-50%, -50%);
 
     width:900px;
-    max-width:95vw;
     height:600px;
 
     background:rgba(255,255,255,0.06);
@@ -77,8 +76,6 @@ body::before{
     box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
     overflow:hidden;
-
-    transition:0.25s ease;
 }
 
 /* maximisé */
@@ -86,12 +83,9 @@ body::before{
     position:fixed;
     top:0;
     left:0;
-
     width:100vw;
     height:100vh;
-
     transform:none;
-
     border-radius:0;
 }
 
@@ -108,78 +102,73 @@ body::before{
 
 /* ===== BARRE ===== */
 .titlebar{
-    height:46px; /* légèrement plus harmonieux pour grande fenêtre */
+    height:52px; /* 🔥 légèrement plus grand pour suivre les boutons */
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 18px;
+    padding:0 16px;
 
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
-
-    cursor:default;
-    user-select:none;
 }
 
-/* titre plus visible */
 .titlebar div{
     color:white;
     font-size:14px;
-    font-weight:700;
-    letter-spacing:0.3px;
+    font-weight:600;
 }
 
-/* ===== BOUTONS AJUSTÉS ===== */
+/* ===== BOUTONS AGRANDIS ===== */
 .controls{
     display:flex;
-    gap:10px; /* plus d’air pour grande fenêtre */
+    gap:10px;
 }
 
-/* boutons un peu plus visibles */
+/* boutons plus gros */
 .btn{
-    width:13px;
-    height:13px;
+    width:14px;   /* 🔥 avant 11px */
+    height:14px;
+
     border-radius:50%;
 
     cursor:pointer;
 
-    background:rgba(255,255,255,0.12);
-    border:1px solid rgba(255,255,255,0.20);
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.18);
 
     backdrop-filter:blur(10px);
 
     transition:0.2s;
 }
 
-/* effet hover global */
 .btn:hover{
     transform:scale(1.25);
 }
 
 /* close */
 .close:hover{
-    background:rgba(255,80,80,0.30);
-    border-color:rgba(255,80,80,0.7);
+    background:rgba(255,80,80,0.25);
+    border-color:rgba(255,80,80,0.6);
     box-shadow:0 0 14px rgba(255,0,0,0.4);
 }
 
 /* min */
 .min:hover{
-    background:rgba(255,190,80,0.25);
-    border-color:rgba(255,190,80,0.6);
-    box-shadow:0 0 12px rgba(255,180,80,0.3);
+    background:rgba(255,190,80,0.20);
+    border-color:rgba(255,190,80,0.5);
+    box-shadow:0 0 12px rgba(255,180,80,0.25);
 }
 
 /* max */
 .max:hover{
-    background:rgba(80,255,140,0.22);
-    border-color:rgba(80,255,140,0.6);
-    box-shadow:0 0 12px rgba(80,255,140,0.3);
+    background:rgba(80,255,140,0.18);
+    border-color:rgba(80,255,140,0.5);
+    box-shadow:0 0 12px rgba(80,255,140,0.25);
 }
 
-/* ===== CONTENU ===== */
+/* contenu */
 .content{
     padding:40px;
     text-align:center;
@@ -278,20 +267,24 @@ body::before{
 const win = document.getElementById("window");
 const openBtn = document.getElementById("openBtn");
 
+/* ouvrir */
 function openWindow(){
     win.classList.remove("closed");
     openBtn.classList.remove("show");
 }
 
+/* fermer */
 function closeWindow(){
     win.classList.add("closed");
     openBtn.classList.add("show");
 }
 
+/* minimiser */
 function minimizeWindow(){
     win.classList.toggle("minimized");
 }
 
+/* maximiser */
 function maximizeWindow(){
     win.classList.toggle("maximized");
 }
