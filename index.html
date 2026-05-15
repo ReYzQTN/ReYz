@@ -19,7 +19,6 @@ body{
     background:url('background.jpg') center/cover no-repeat;
 }
 
-/* fond */
 body::before{
     content:"";
     position:absolute;
@@ -27,7 +26,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* bouton réouverture */
+/* ===== BOUTON RÉOUVERTURE ===== */
 .open-app{
     position:absolute;
     top:50%;
@@ -47,6 +46,7 @@ body::before{
     text-align:center;
 
     display:none;
+    font-size:14px;
 }
 
 .open-app.show{
@@ -57,7 +57,7 @@ body::before{
     background:rgba(255,0,0,0.25);
 }
 
-/* fenêtre */
+/* ===== FENÊTRE ===== */
 .window{
     position:absolute;
     top:50%;
@@ -65,6 +65,7 @@ body::before{
     transform:translate(-50%, -50%);
 
     width:900px;
+    max-width:95vw;
     height:600px;
 
     background:rgba(255,255,255,0.06);
@@ -96,7 +97,7 @@ body::before{
 
 /* minimisé */
 .window.minimized{
-    height:48px;
+    height:44px;
     overflow:hidden;
 }
 
@@ -105,38 +106,38 @@ body::before{
     display:none;
 }
 
-/* ===== BARRE AJUSTÉE ===== */
+/* ===== BARRE ===== */
 .titlebar{
-    height:48px;
+    height:46px; /* légèrement plus harmonieux pour grande fenêtre */
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 16px;
+    padding:0 18px;
 
-    background:rgba(0,0,0,0.40);
-    border-bottom:1px solid rgba(255,255,255,0.10);
+    background:rgba(0,0,0,0.35);
+    border-bottom:1px solid rgba(255,255,255,0.08);
 
+    cursor:default;
     user-select:none;
 }
 
-/* titre plus propre */
+/* titre plus visible */
 .titlebar div{
     color:white;
     font-size:14px;
-    font-weight:600;
+    font-weight:700;
     letter-spacing:0.3px;
 }
 
 /* ===== BOUTONS AJUSTÉS ===== */
 .controls{
     display:flex;
-    gap:10px;
-    align-items:center;
+    gap:10px; /* plus d’air pour grande fenêtre */
 }
 
-/* plus gros + plus net */
+/* boutons un peu plus visibles */
 .btn{
     width:13px;
     height:13px;
@@ -147,38 +148,38 @@ body::before{
     background:rgba(255,255,255,0.12);
     border:1px solid rgba(255,255,255,0.20);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(10px);
 
     transition:0.2s;
-    box-shadow:0 0 0 rgba(0,0,0,0);
 }
 
+/* effet hover global */
 .btn:hover{
     transform:scale(1.25);
 }
 
-/* rouge (close) */
+/* close */
 .close:hover{
     background:rgba(255,80,80,0.30);
     border-color:rgba(255,80,80,0.7);
-    box-shadow:0 0 14px rgba(255,0,0,0.35);
+    box-shadow:0 0 14px rgba(255,0,0,0.4);
 }
 
-/* orange (min) */
+/* min */
 .min:hover{
     background:rgba(255,190,80,0.25);
     border-color:rgba(255,190,80,0.6);
-    box-shadow:0 0 12px rgba(255,180,80,0.25);
+    box-shadow:0 0 12px rgba(255,180,80,0.3);
 }
 
-/* vert (max) */
+/* max */
 .max:hover{
     background:rgba(80,255,140,0.22);
     border-color:rgba(80,255,140,0.6);
-    box-shadow:0 0 12px rgba(80,255,140,0.25);
+    box-shadow:0 0 12px rgba(80,255,140,0.3);
 }
 
-/* contenu */
+/* ===== CONTENU ===== */
 .content{
     padding:40px;
     text-align:center;
@@ -238,12 +239,10 @@ body::before{
 
 <body>
 
-<!-- bouton réouverture -->
 <div class="open-app" id="openBtn" onclick="openWindow()">
     Cliquez ici pour faire réapparaître la fenêtre
 </div>
 
-<!-- fenêtre -->
 <div class="window" id="window">
 
     <div class="titlebar">
@@ -279,24 +278,20 @@ body::before{
 const win = document.getElementById("window");
 const openBtn = document.getElementById("openBtn");
 
-/* ouvrir */
 function openWindow(){
     win.classList.remove("closed");
     openBtn.classList.remove("show");
 }
 
-/* fermer */
 function closeWindow(){
     win.classList.add("closed");
     openBtn.classList.add("show");
 }
 
-/* minimiser */
 function minimizeWindow(){
     win.classList.toggle("minimized");
 }
 
-/* maximiser */
 function maximizeWindow(){
     win.classList.toggle("maximized");
 }
