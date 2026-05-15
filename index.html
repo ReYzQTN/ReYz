@@ -19,7 +19,6 @@ html, body{
     overflow:hidden;
 }
 
-/* background */
 body{
     background:url('background.jpg') center/cover no-repeat;
 }
@@ -39,7 +38,6 @@ body::before{
     transform:translate(-50%, -50%);
 
     width:320px;
-
     padding:18px;
 
     border-radius:14px;
@@ -60,13 +58,11 @@ body::before{
     display:block;
 }
 
-/* texte */
 .open-text{
     font-size:14px;
     line-height:1.4;
 }
 
-/* ICI cliquable */
 .click-here{
     display:inline-block;
 
@@ -92,7 +88,6 @@ body::before{
 .click-here:hover{
     transform:scale(1.1);
     background:rgba(255,0,0,0.35);
-    box-shadow:0 0 12px rgba(255,0,0,0.4);
 }
 
 /* ===== WINDOW ===== */
@@ -127,12 +122,9 @@ body::before{
 .window.maximized{
     top:0;
     left:0;
-
     width:100vw;
     height:100vh;
-
     transform:none !important;
-
     border-radius:0;
 }
 
@@ -159,8 +151,8 @@ body::before{
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
 
-    flex-shrink:0;
     user-select:none;
+    flex-shrink:0;
 }
 
 .titlebar div{
@@ -229,7 +221,7 @@ body::before{
     font-weight:900;
 }
 
-/* links inchangés */
+/* links */
 .links{
     width:100%;
     display:flex;
@@ -267,7 +259,6 @@ body::before{
 
 <body>
 
-<!-- MESSAGE RESET -->
 <div class="open-app" id="openBtn">
     <div class="open-text">
         Bravo tu as cassé le site !<br>
@@ -275,7 +266,6 @@ body::before{
     </div>
 </div>
 
-<!-- WINDOW -->
 <div class="window" id="window">
 
     <div class="titlebar">
@@ -296,10 +286,19 @@ body::before{
         <div class="name">ReYz</div>
 
         <div class="links">
+
+            <!-- Letterboxd + backloggd -->
             <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
+            <a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">Backloggd</a>
+
+            <!-- Twitch + YouTube -->
             <a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">Twitch</a>
+            <a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">YouTube</a>
+
+            <!-- autres -->
             <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
             <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
+
         </div>
 
     </div>
