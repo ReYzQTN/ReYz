@@ -37,7 +37,7 @@ body::before{
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:340px;
+    width:360px;
     padding:18px;
 
     border-radius:14px;
@@ -71,7 +71,7 @@ body::before{
     font-weight:800;
 }
 
-/* ===== WINDOW (PLUS GRANDE) ===== */
+/* ===== WINDOW (TRÈS GRANDE) ===== */
 .window{
     position:fixed;
 
@@ -79,11 +79,11 @@ body::before{
     left:50%;
     transform:translate(-50%, -50%);
 
-    width:1100px;   /* 🔥 PLUS GRAND */
-    height:750px;   /* 🔥 PLUS GRAND */
+    width:1300px;   /* 🔥 ENCORE PLUS GRAND */
+    height:850px;   /* 🔥 ENCORE PLUS GRAND */
 
-    max-width:95vw;
-    max-height:92vh;
+    max-width:96vw;
+    max-height:94vh;
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -103,12 +103,9 @@ body::before{
 .window.maximized{
     top:0;
     left:0;
-
     width:100vw;
     height:100vh;
-
     transform:none !important;
-
     border-radius:0;
 }
 
@@ -124,13 +121,13 @@ body::before{
 
 /* ===== BAR ===== */
 .titlebar{
-    height:48px; /* 🔥 légèrement ajusté */
+    height:50px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 16px;
+    padding:0 18px;
 
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
@@ -147,12 +144,12 @@ body::before{
 /* boutons fenêtre */
 .controls{
     display:flex;
-    gap:9px;
+    gap:10px;
 }
 
 .btn{
-    width:12px;
-    height:12px;
+    width:13px;
+    height:13px;
 
     border-radius:50%;
 
@@ -176,12 +173,12 @@ body::before{
 .content{
     flex:1;
 
-    padding:50px; /* 🔥 plus aéré */
+    padding:60px; /* 🔥 plus large espace */
 
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:22px;
+    gap:26px;
 
     color:white;
 
@@ -195,25 +192,25 @@ body::before{
 
 /* avatar */
 .pp{
-    width:160px;   /* 🔥 ajusté */
-    height:160px;
-    border-radius:18px;
+    width:180px;
+    height:180px;
+    border-radius:20px;
     object-fit:cover;
 }
 
 .name{
-    font-size:48px; /* 🔥 plus lisible */
+    font-size:54px;
     font-weight:900;
 }
 
 /* ===== LINKS ADAPTATIFS ===== */
 .links{
     width:100%;
-    max-width:650px; /* 🔥 s’adapte mieux à grande fenêtre */
+    max-width:750px; /* 🔥 adapté à grande fenêtre */
 
     display:flex;
     flex-direction:column;
-    gap:16px;
+    gap:18px;
 }
 
 .link{
@@ -222,14 +219,14 @@ body::before{
     text-decoration:none;
     color:white;
 
-    padding:18px; /* 🔥 un peu plus grand */
+    padding:20px;
 
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
 
-    font-size:17px;
+    font-size:18px;
 
     text-align:center;
 
