@@ -26,7 +26,7 @@ body::before{
     background:rgba(0,0,0,0.55);
 }
 
-/* bouton réouvrir */
+/* ===== bouton réouvrir ===== */
 .open-app{
     position:absolute;
     top:50%;
@@ -52,13 +52,9 @@ body::before{
     display:block;
 }
 
-.open-app:hover{
-    background:rgba(255,0,0,0.25);
-}
-
 /* ===== FENÊTRE ===== */
 .window{
-    position:absolute;
+    position:fixed; /* 🔥 IMPORTANT (fix overflow + fullscreen) */
     top:50%;
     left:50%;
     transform:translate(-50%, -50%);
@@ -66,6 +62,7 @@ body::before{
     width:900px;
     max-width:95vw;
     height:600px;
+    max-height:90vh; /* 🔥 évite débordement écran */
 
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -76,26 +73,24 @@ body::before{
     box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
     overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
 }
 
-/* maximisé */
+/* fullscreen propre */
 .window.maximized{
-    position:fixed;
     top:0;
     left:0;
-
     width:100vw;
     height:100vh;
-
     transform:none;
-
     border-radius:0;
 }
 
 /* minimisé */
 .window.minimized{
     height:44px;
-    overflow:hidden;
 }
 
 /* fermé */
@@ -103,7 +98,7 @@ body::before{
     display:none;
 }
 
-/* barre */
+/* ===== BARRE ===== */
 .titlebar{
     height:44px;
 
@@ -117,6 +112,7 @@ body::before{
     border-bottom:1px solid rgba(255,255,255,0.08);
 
     user-select:none;
+    flex-shrink:0;
 }
 
 .titlebar div{
@@ -125,7 +121,7 @@ body::before{
     font-weight:600;
 }
 
-/* boutons fenêtre */
+/* boutons */
 .controls{
     display:flex;
     gap:8px;
@@ -150,29 +146,25 @@ body::before{
     transform:scale(1.2);
 }
 
-/* close */
+/* hover colors */
 .close:hover{
     background:rgba(255,80,80,0.25);
     border-color:rgba(255,80,80,0.6);
-    box-shadow:0 0 12px rgba(255,0,0,0.35);
 }
 
-/* min */
 .min:hover{
     background:rgba(255,190,80,0.20);
-    border-color:rgba(255,190,80,0.5);
-    box-shadow:0 0 10px rgba(255,180,80,0.25);
+    border-color:rgba(255,180,80,0.5);
 }
 
-/* max */
 .max:hover{
     background:rgba(80,255,140,0.18);
     border-color:rgba(80,255,140,0.5);
-    box-shadow:0 0 10px rgba(80,255,140,0.25);
 }
 
 /* ===== CONTENU ===== */
 .content{
+    flex:1;
     padding:40px;
     text-align:center;
     color:white;
@@ -181,6 +173,8 @@ body::before{
     flex-direction:column;
     align-items:center;
     gap:18px;
+
+    overflow:auto; /* 🔥 évite overflow vertical */
 }
 
 .pp{
@@ -195,24 +189,24 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LIENS AJUSTÉS À LA LARGEUR ===== */
+/* ===== LIENS FIXÉS PROPREMENT ===== */
 .links{
     width:100%;
+    max-width:420px; /* 🔥 empêche débordement */
 
     display:flex;
     flex-direction:column;
-    gap:16px;
-
-    align-items:stretch; /* 🔥 prend toute la largeur */
+    gap:14px;
 }
 
 .link{
-    width:100%; /* 🔥 IMPORTANT : plein width fenêtre */
+    width:100%; /* 🔥 important */
 
     text-decoration:none;
     color:white;
 
-    padding:18px 22px; /* 🔥 plus large visuellement */
+    padding:16px;
+
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
@@ -220,12 +214,13 @@ body::before{
 
     backdrop-filter:blur(10px);
 
-    transition:0.2s;
-
     font-size:16px;
     font-weight:600;
 
     text-align:center;
+
+    transition:0.2s;
+    box-sizing:border-box; /* 🔥 évite overflow */
 }
 
 .link:hover{
@@ -238,12 +233,10 @@ body::before{
 
 <body>
 
-<!-- bouton réouvrir -->
 <div class="open-app" id="openBtn" onclick="openWindow()">
     Cliquez ici pour faire réapparaître la fenêtre
 </div>
 
-<!-- fenêtre -->
 <div class="window" id="window">
 
     <div class="titlebar">
