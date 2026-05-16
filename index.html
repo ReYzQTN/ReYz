@@ -634,5 +634,67 @@ function closeReview(){
 
 </script>
 
+    <script>
+
+const modal = document.getElementById("reviewModal");
+
+function openReview(){
+    modal.classList.add("show");
+}
+
+function closeReview(){
+    modal.classList.remove("show");
+}
+
+
+/* ===== BOUTONS DES FENÊTRES ===== */
+
+document.querySelectorAll(".window").forEach(win => {
+    const content = win.querySelector(".content");
+    const minBtn = win.querySelector(".min");
+    const maxBtn = win.querySelector(".max");
+    const closeBtn = win.querySelector(".close");
+
+    let isMin = false;
+    let isMax = false;
+
+    // MINIMIZE
+    if (minBtn) {
+        minBtn.addEventListener("click", () => {
+            isMin = !isMin;
+            content.style.display = isMin ? "none" : "flex";
+        });
+    }
+
+    // MAXIMIZE
+    if (maxBtn) {
+        maxBtn.addEventListener("click", () => {
+            isMax = !isMax;
+
+            if (isMax) {
+                win.style.position = "fixed";
+                win.style.inset = "20px";
+                win.style.zIndex = "9999";
+                win.style.width = "95vw";
+                win.style.height = "90vh";
+            } else {
+                win.style.position = "";
+                win.style.inset = "";
+                win.style.width = "";
+                win.style.height = "";
+            }
+        });
+    }
+
+    // CLOSE (sauf modal)
+    if (closeBtn && win.id !== "reviewModal") {
+        closeBtn.addEventListener("click", () => {
+            win.style.display = "none";
+        });
+    }
+});
+
+</script>
+
 </body>
 </html>
