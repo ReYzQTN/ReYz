@@ -22,31 +22,36 @@ html,body{
 
 body{
     background:url('background.jpg') center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.58);
+    background:rgba(0,0,0,0.60);
 }
 
-/* WINDOW */
+/* ===== DESKTOP ===== */
 
-.window{
-    position:fixed;
+.desktop{
+    position:relative;
+    z-index:5;
 
-    top:50%;
-    left:50%;
+    display:flex;
+    flex-direction:column;
 
-    transform:translate(-50%,-50%);
+    gap:24px;
 
     width:1300px;
-    height:850px;
-
     max-width:96vw;
-    max-height:94vh;
+}
 
+/* ===== WINDOW ===== */
+
+.window{
     background:rgba(255,255,255,0.06);
 
     backdrop-filter:blur(18px);
@@ -57,38 +62,13 @@ body::before{
 
     overflow:hidden;
 
-    display:flex;
-    flex-direction:column;
-
     box-shadow:0 30px 100px rgba(0,0,0,0.75);
 
-    z-index:10;
+    display:flex;
+    flex-direction:column;
 }
 
-.window.maximized{
-    top:0 !important;
-    left:0 !important;
-
-    width:100vw !important;
-    height:100vh !important;
-
-    max-width:none !important;
-    max-height:none !important;
-
-    transform:none !important;
-
-    border-radius:0 !important;
-}
-
-.window.minimized{
-    height:50px !important;
-}
-
-.window.closed{
-    display:none !important;
-}
-
-/* TITLEBAR */
+/* ===== TITLEBAR ===== */
 
 .titlebar{
     height:50px;
@@ -112,7 +92,7 @@ body::before{
     font-weight:600;
 }
 
-/* BUTTONS */
+/* ===== BUTTONS ===== */
 
 .controls{
     display:flex;
@@ -125,9 +105,7 @@ body::before{
 
     border-radius:50%;
 
-    cursor:pointer;
-
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.08);
 
     border:1px solid rgba(255,255,255,0.15);
 
@@ -150,29 +128,33 @@ body::before{
     transform:scale(1.2);
 }
 
-/* CONTENT */
+/* ===== MAIN WINDOW ===== */
+
+.main-window{
+    height:520px;
+}
 
 .content{
     flex:1;
 
-    overflow-y:auto;
+    padding:50px;
 
-    padding:60px;
+    overflow-y:auto;
 
     display:flex;
     flex-direction:column;
     align-items:center;
 
-    gap:26px;
+    gap:24px;
 
     color:white;
 }
 
-/* PROFILE */
+/* ===== PROFILE ===== */
 
 .pp{
-    width:180px;
-    height:180px;
+    width:170px;
+    height:170px;
 
     border-radius:20px;
 
@@ -180,11 +162,11 @@ body::before{
 }
 
 .name{
-    font-size:54px;
+    font-size:52px;
     font-weight:900;
 }
 
-/* LINKS */
+/* ===== LINKS ===== */
 
 .links{
     width:100%;
@@ -217,8 +199,6 @@ body::before{
     font-weight:600;
 
     transition:0.2s;
-
-    cursor:pointer;
 }
 
 .link:hover{
@@ -229,19 +209,136 @@ body::before{
     transform:scale(1.02);
 }
 
-/* CRITIQUE */
+/* ===== CRITIQUE WINDOW ===== */
+
+.critique-window{
+    height:320px;
+}
+
+.review-list{
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:16px;
+}
+
+.review-card{
+    width:100%;
+
+    padding:22px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,0.06);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.review-card:hover{
+    background:rgba(255,0,0,0.25);
+
+    border-color:rgba(255,0,0,0.4);
+
+    transform:scale(1.01);
+}
 
 .review-title{
-    font-size:64px;
+    font-size:28px;
+    font-weight:800;
+}
+
+.review-meta{
+    margin-top:8px;
+
+    color:#ffd95e;
+
+    font-size:18px;
+}
+
+/* ===== MODAL ===== */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.72);
+
+    backdrop-filter:blur(6px);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-window{
+    width:1200px;
+    height:88vh;
+
+    max-width:95vw;
+
+    background:rgba(15,15,15,0.92);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:0 40px 120px rgba(0,0,0,0.8);
+}
+
+.modal-content{
+    overflow-y:auto;
+
+    padding:50px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:30px;
+
+    color:white;
+}
+
+.banner{
+    width:100%;
+    max-width:900px;
+
+    border-radius:18px;
+}
+
+.big-title{
+    font-size:70px;
     font-weight:900;
 }
 
 .stars{
-    font-size:38px;
-    color:#ffd65c;
+    color:#ffd95e;
+    font-size:42px;
 }
 
 .review-text{
+    width:100%;
     max-width:950px;
 
     line-height:1.9;
@@ -252,9 +349,9 @@ body::before{
 
     border:1px solid rgba(255,255,255,0.08);
 
-    padding:35px;
-
     border-radius:18px;
+
+    padding:35px;
 }
 
 .gallery{
@@ -269,60 +366,37 @@ body::before{
 .gallery img{
     width:420px;
 
-    border-radius:14px;
+    border-radius:16px;
 }
 
-/* MESSAGE */
+/* ===== RESPONSIVE ===== */
 
-.open-app{
-    position:fixed;
+@media(max-width:900px){
 
-    top:50%;
-    left:50%;
+    .desktop{
+        width:95vw;
+    }
 
-    transform:translate(-50%,-50%);
+    .main-window{
+        height:auto;
+    }
 
-    width:360px;
+    .critique-window{
+        height:auto;
+    }
 
-    padding:18px;
+    .gallery img{
+        width:100%;
+    }
 
-    border-radius:14px;
+    .big-title{
+        font-size:46px;
+    }
 
-    background:rgba(255,255,255,0.08);
+    .name{
+        font-size:42px;
+    }
 
-    border:1px solid rgba(255,255,255,0.15);
-
-    backdrop-filter:blur(14px);
-
-    color:white;
-
-    text-align:center;
-
-    display:none;
-
-    z-index:99999;
-}
-
-.open-app.show{
-    display:block;
-}
-
-.click-here{
-    display:inline-block;
-
-    margin-top:8px;
-
-    padding:4px 10px;
-
-    border-radius:8px;
-
-    background:rgba(255,0,0,0.25);
-
-    border:1px solid rgba(255,0,0,0.4);
-
-    cursor:pointer;
-
-    font-weight:800;
 }
 
 </style>
@@ -330,136 +404,159 @@ body::before{
 
 <body>
 
-<div class="open-app" id="openBtn">
-Bravo tu as cassé le site !<br>
-Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
+<div class="desktop">
+
+    <!-- ===== MES LIENS ===== -->
+
+    <div class="window main-window">
+
+        <div class="titlebar">
+
+            <div>Mes Liens</div>
+
+            <div class="controls">
+                <div class="btn close"></div>
+                <div class="btn min"></div>
+                <div class="btn max"></div>
+            </div>
+
+        </div>
+
+        <div class="content">
+
+            <img src="pp.jpg" class="pp">
+
+            <div class="name">ReYz</div>
+
+            <div class="links">
+
+                <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">
+                Letterboxd
+                </a>
+
+                <a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">
+                Backloggd
+                </a>
+
+                <a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">
+                Twitch
+                </a>
+
+                <a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">
+                YouTube
+                </a>
+
+                <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">
+                Discord
+                </a>
+
+                <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">
+                Google Doc
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== MES CRITIQUES ===== -->
+
+    <div class="window critique-window">
+
+        <div class="titlebar">
+
+            <div>Mes Critiques</div>
+
+            <div class="controls">
+                <div class="btn close"></div>
+                <div class="btn min"></div>
+                <div class="btn max"></div>
+            </div>
+
+        </div>
+
+        <div class="content">
+
+            <div class="review-list">
+
+                <div class="review-card" onclick="openReview()">
+
+                    <div class="review-title">
+                    Magellan
+                    </div>
+
+                    <div class="review-meta">
+                    ★★★★☆
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-<!-- MAIN WINDOW -->
+<!-- ===== REVIEW MODAL ===== -->
 
-<div class="window" id="window">
+<div class="modal" id="reviewModal">
 
-<div class="titlebar">
+    <div class="modal-window">
 
-<div>Mes liens</div>
+        <div class="titlebar">
 
-<div class="controls">
-<div class="btn close" onclick="closeWindow()"></div>
-<div class="btn min" onclick="minimizeWindow()"></div>
-<div class="btn max" onclick="maximizeWindow()"></div>
-</div>
+            <div>Critique • Magellan</div>
 
-</div>
+            <div class="controls">
+                <div class="btn close" onclick="closeReview()"></div>
+            </div>
 
-<div class="content">
+        </div>
 
-<img src="pp.jpg" class="pp">
+        <div class="modal-content">
 
-<div class="name">ReYz</div>
+            <img src="magellan1.jpg" class="banner">
 
-<div class="links">
+            <div class="big-title">
+            Magellan
+            </div>
 
-<a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
+            <div class="stars">
+            ★★★★☆
+            </div>
 
-<a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">Backloggd</a>
+            <div class="review-text">
 
-<a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">Twitch</a>
+            Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes capturent l’image comme des tableaux peints ce qui rend chaque moment du film contemplatif. On peut d’ailleurs remercier Artur Tort pour son travail exceptionnel sur la photographie. De plus, la narration lente ne m’a absolument pas freiné. Au contraire, je trouve qu’elle accentue parfaitement l’épreuve de foi qu’a subit l’équipage durant cette expédition catastrophique du début jusqu’à la fin. Le seul bémol que je pourrais reprocher au film, c’est qu’il faut au minima se renseigner sur la traversée de Magellan avant le visionnage, afin de mieux comprendre les différents lieux ainsi que les dates clés de l’expédition. Sans ce contexte, certaines séquences peuvent paraître confuses et le rythme très lent, surtout que le film dure presque trois heures, donc le spectateur peut vite décrocher.
 
-<a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">YouTube</a>
+            </div>
 
-<a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
+            <div class="gallery">
 
-<a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
+                <img src="magellan2.jpg">
+                <img src="magellan3.jpg">
 
-<div class="link" onclick="openCritique()">
-Mes Critiques • Magellan
-</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
-
-</div>
-
-<!-- CRITIQUE WINDOW -->
-
-<div class="window closed" id="critiqueWindow">
-
-<div class="titlebar">
-
-<div>Critique • Magellan</div>
-
-<div class="controls">
-<div class="btn close" onclick="closeCritique()"></div>
-</div>
-
-</div>
-
-<div class="content">
-
-<img src="magellan1.png"
-style="
-width:100%;
-max-width:900px;
-border-radius:18px;
-">
-
-<div class="review-title">
-Magellan
-</div>
-
-<div class="stars">
-★★★★☆
-</div>
-
-<div class="review-text">
-
-Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes capturent l’image comme des tableaux peints ce qui rend chaque moment du film contemplatif. On peut d’ailleurs remercier Artur Tort pour son travail exceptionnel sur la photographie. De plus, la narration lente ne m’a absolument pas freiné. Au contraire, je trouve qu’elle accentue parfaitement l’épreuve de foi qu’a subit l’équipage durant cette expédition catastrophique du début jusqu’à la fin. Le seul bémol que je pourrais reprocher au film, c’est qu’il faut au minima se renseigner sur la traversée de Magellan avant le visionnage, afin de mieux comprendre les différents lieux ainsi que les dates clés de l’expédition. Sans ce contexte, certaines séquences peuvent paraître confuses et le rythme très lent, surtout que le film dure presque trois heures, donc le spectateur peut vite décrocher.
-    
-</div>
-
-<div class="gallery">
-
-<img src="magellan2.png">
-<img src="magellan3.png">
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
 <script>
 
-const win = document.getElementById("window");
-const openBtn = document.getElementById("openBtn");
+const modal = document.getElementById("reviewModal");
 
-function closeWindow(){
-    win.classList.add("closed");
-    openBtn.classList.add("show");
+function openReview(){
+    modal.classList.add("show");
 }
 
-function openWindow(){
-    win.classList.remove("closed");
-    openBtn.classList.remove("show");
-}
-
-function minimizeWindow(){
-    win.classList.toggle("minimized");
-}
-
-function maximizeWindow(){
-    win.classList.toggle("maximized");
-}
-
-const critique = document.getElementById("critiqueWindow");
-
-function openCritique(){
-    critique.classList.remove("closed");
-}
-
-function closeCritique(){
-    critique.classList.add("closed");
+function closeReview(){
+    modal.classList.remove("show");
 }
 
 </script>
