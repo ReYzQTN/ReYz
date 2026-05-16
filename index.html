@@ -54,15 +54,12 @@ body::before{
     border:1px solid rgba(255,255,255,0.12);
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 30px 100px rgba(0,0,0,0.75);
     display:flex;
     flex-direction:column;
-    transition:0.25s;
 }
 
-/* états fenêtres */
-.window.minimized .content,
-.window.minimized .modal-content{
+/* states */
+.window.minimized .content{
     display:none;
 }
 
@@ -82,7 +79,6 @@ body::before{
     padding:0 18px;
     background:rgba(0,0,0,0.35);
     border-bottom:1px solid rgba(255,255,255,0.08);
-    flex-shrink:0;
 }
 
 .titlebar div{
@@ -104,104 +100,51 @@ body::before{
     border-radius:50%;
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.15);
-    transition:0.2s;
     cursor:pointer;
+    transition:0.2s;
+}
+
+.btn:hover{
+    transform:scale(1.2);
 }
 
 .close:hover{ background:rgba(255,80,80,0.4); }
 .min:hover{ background:rgba(255,200,80,0.4); }
 .max:hover{ background:rgba(80,255,140,0.4); }
 
-.btn:hover{ transform:scale(1.2); }
-
 /* ===== CONTENT ===== */
 
 .content{
-    flex:1;
     padding:40px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:24px;
     color:white;
 }
 
-/* ===== PROFILE ===== */
-
-.pp{
-    width:170px;
-    height:170px;
-    border-radius:20px;
-    object-fit:cover;
-}
-
-.name{
-    font-size:52px;
-    font-weight:900;
-}
-
-/* ===== LINKS (GRILLE AU LIEU DE SCROLL) ===== */
+/* LINKS */
 
 .links{
-    width:100%;
-    max-width:900px;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:14px;
+    gap:12px;
 }
 
 .link{
-    padding:18px;
-    border-radius:14px;
+    padding:16px;
+    text-align:center;
+    border-radius:12px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
     color:white;
     text-decoration:none;
-    text-align:center;
-    font-size:16px;
-    font-weight:600;
-    transition:0.2s;
-}
-
-.link:hover{
-    background:rgba(255,0,0,0.25);
-    border-color:rgba(255,0,0,0.4);
-    transform:scale(1.02);
 }
 
 /* ===== CRITIQUES ===== */
 
-.review-list{
-    width:100%;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:16px;
-}
-
 .review-card{
-    padding:22px;
-    border-radius:16px;
+    padding:20px;
+    border-radius:14px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
-    color:white;
     cursor:pointer;
-    transition:0.2s;
-}
-
-.review-card:hover{
-    background:rgba(255,0,0,0.25);
-    border-color:rgba(255,0,0,0.4);
-    transform:scale(1.01);
-}
-
-.review-title{
-    font-size:24px;
-    font-weight:800;
-}
-
-.review-meta{
-    margin-top:8px;
-    color:#ffd95e;
 }
 
 /* ===== MODAL ===== */
@@ -210,23 +153,18 @@ body::before{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.78);
-    backdrop-filter:blur(8px);
     display:none;
     justify-content:center;
     align-items:center;
-    z-index:999;
 }
 
-.modal.show{
-    display:flex;
-}
+.modal.show{ display:flex; }
 
 .modal-window{
     width:1300px;
     max-width:95vw;
     height:92vh;
-    background:rgba(12,12,12,0.96);
-    border:1px solid rgba(255,255,255,0.12);
+    background:rgba(10,10,10,0.96);
     border-radius:20px;
     overflow:hidden;
     display:flex;
@@ -235,20 +173,53 @@ body::before{
 
 .modal-content{
     padding:40px;
+    overflow:auto;
     color:white;
     display:flex;
     flex-direction:column;
     gap:30px;
 }
 
-/* ===== REVIEW ===== */
+/* REVIEW */
+
+.review-header{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.poster{
+    width:240px;
+    border-radius:14px;
+}
+
+.big-title{
+    font-size:60px;
+    font-weight:900;
+}
+
+.meta{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.meta-box{
+    padding:8px 12px;
+    background:rgba(255,255,255,0.06);
+    border-radius:10px;
+}
+
+.stars{
+    color:#ffd95e;
+    font-size:32px;
+}
 
 .review-text{
     line-height:1.8;
-    font-size:16px;
     background:rgba(255,255,255,0.05);
-    border-radius:14px;
     padding:25px;
+    border-radius:14px;
 }
 
 .gallery{
@@ -262,10 +233,28 @@ body::before{
     border-radius:12px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== DOCK ===== */
 
-@media(max-width:900px){
-    .name{ font-size:40px; }
+.dock{
+    position:fixed;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    padding:10px;
+    background:rgba(0,0,0,0.5);
+    border-radius:12px;
+    backdrop-filter:blur(10px);
+}
+
+.dock-item{
+    padding:8px 12px;
+    color:white;
+    background:rgba(255,255,255,0.08);
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12px;
 }
 
 </style>
@@ -275,8 +264,9 @@ body::before{
 
 <div class="desktop">
 
-    <!-- LINKS -->
-    <div class="window">
+    <!-- WINDOW 1 -->
+    <div class="window" data-name="links">
+
         <div class="titlebar">
             <div>Mes Liens</div>
             <div class="controls">
@@ -287,8 +277,6 @@ body::before{
         </div>
 
         <div class="content">
-            <img src="pp.jpg" class="pp">
-            <div class="name">ReYz</div>
 
             <div class="links">
                 <a class="link" href="#">Letterboxd</a>
@@ -296,13 +284,15 @@ body::before{
                 <a class="link" href="#">Twitch</a>
                 <a class="link" href="#">YouTube</a>
                 <a class="link" href="#">Discord</a>
-                <a class="link" href="#">Google Doc</a>
+                <a class="link" href="#">Docs</a>
             </div>
+
         </div>
     </div>
 
-    <!-- CRITIQUES -->
-    <div class="window">
+    <!-- WINDOW 2 -->
+    <div class="window" data-name="reviews">
+
         <div class="titlebar">
             <div>Mes Critiques</div>
             <div class="controls">
@@ -313,88 +303,57 @@ body::before{
         </div>
 
         <div class="content">
-            <div class="review-list">
-                <div class="review-card" onclick="openReview()">
-                    <div class="review-title">Magellan</div>
-                    <div class="review-meta">★★★★☆</div>
-                </div>
+
+            <div class="review-card" onclick="openReview()">
+                Magellan ★★★★☆
             </div>
+
         </div>
     </div>
 
 </div>
 
-<!-- ===== REVIEW MODAL ===== -->
-
+<!-- MODAL FULL RESTAURÉ -->
 <div class="modal" id="reviewModal">
 
     <div class="modal-window">
 
         <div class="titlebar">
-
             <div>Critique • Magellan</div>
-
             <div class="controls">
                 <div class="btn close" onclick="closeReview()"></div>
             </div>
-
         </div>
 
         <div class="modal-content">
 
-            <!-- HEADER -->
-
             <div class="review-header">
 
-                <img src="magellan-poster.jpg" class="poster">
+                <img class="poster" src="magellan-poster.jpg">
 
-                <div class="review-info">
-
-                    <div class="big-title">
-                    Magellan
-                    </div>
+                <div>
+                    <div class="big-title">Magellan</div>
 
                     <div class="meta">
-
-                        <div class="meta-box">
-                        Réalisateur • Lav Diaz
-                        </div>
-
-                        <div class="meta-box">
-                        Durée • 2h 43m
-                        </div>
-
-                        <div class="meta-box">
-                        2025
-                        </div>
-
+                        <div class="meta-box">Lav Diaz</div>
+                        <div class="meta-box">2h43</div>
+                        <div class="meta-box">2025</div>
                     </div>
 
-                    <div class="stars">
-                    ★★★★☆
-                    </div>
-
+                    <div class="stars">★★★★☆</div>
                 </div>
 
             </div>
 
-            <!-- REVIEW -->
-
             <div class="review-text">
-                
-Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes capturent l’image comme des tableaux peints ce qui rend chaque moment du film contemplatif. On peut d’ailleurs remercier Artur Tort pour son travail exceptionnel sur la photographie. De plus, la narration lente ne m’a absolument pas freiné. Au contraire, je trouve qu’elle accentue parfaitement l’épreuve de foi qu’a subit l’équipage durant cette expédition catastrophique du début jusqu’à la fin. Le seul bémol que je pourrais reprocher au film, c’est qu’il faut au minima se renseigner sur la traversée de Magellan avant le visionnage, afin de mieux comprendre les différents lieux ainsi que les dates clés de l’expédition. Sans ce contexte, certaines séquences peuvent paraître confuses et le rythme très lent, surtout que le film dure presque trois heures, donc le spectateur peut vite décrocher.
-            
+                Mon premier Lav Diaz et j’ai adoré la manière dont les plans fixes...
             </div>
 
-            <!-- GALLERY -->
-
             <div class="gallery">
-
                 <img src="magellan1.png">
                 <img src="magellan2.png">
                 <img src="magellan3.png">
                 <img src="magellan4.png">
-
             </div>
 
         </div>
@@ -403,22 +362,57 @@ Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes captur
 
 </div>
 
+<!-- DOCK -->
+<div class="dock" id="dock"></div>
+
 <script>
 
-const modal = document.getElementById("reviewModal");
+const windows = document.querySelectorAll(".window");
+const dock = document.getElementById("dock");
 
-function openReview(){
-    modal.classList.add("show");
+/* STATE SYSTEM */
+function updateDock(){
+    dock.innerHTML = "";
+
+    windows.forEach(win => {
+        if(win.classList.contains("minimized")){
+            const name = win.dataset.name;
+
+            const item = document.createElement("div");
+            item.className = "dock-item";
+            item.textContent = name;
+
+            item.onclick = () => {
+                win.classList.remove("minimized");
+            };
+
+            dock.appendChild(item);
+        }
+    });
 }
 
-function closeReview(){
-    modal.classList.remove("show");
-}
+/* CONTROLS */
+windows.forEach(win => {
 
-</script>
+    const closeBtn = win.querySelector(".close");
+    const minBtn = win.querySelector(".min");
+    const maxBtn = win.querySelector(".max");
 
-</body>
-</html>
+    closeBtn.onclick = () => {
+        win.classList.add("minimized");
+        updateDock();
+    };
+
+    minBtn.onclick = () => {
+        win.classList.toggle("minimized");
+        updateDock();
+    };
+
+    maxBtn.onclick = () => {
+        win.classList.toggle("maximized");
+    };
+
+});
 
 /* MODAL */
 const modal = document.getElementById("reviewModal");
@@ -431,32 +425,7 @@ function closeReview(){
     modal.classList.remove("show");
 }
 
-/* WINDOW CONTROLS */
-document.querySelectorAll(".window").forEach(win => {
-
-    const closeBtn = win.querySelector(".close");
-    const minBtn = win.querySelector(".min");
-    const maxBtn = win.querySelector(".max");
-
-    if(closeBtn){
-        closeBtn.onclick = () => {
-            win.style.display = "none";
-        }
-    }
-
-    if(minBtn){
-        minBtn.onclick = () => {
-            win.classList.toggle("minimized");
-        }
-    }
-
-    if(maxBtn){
-        maxBtn.onclick = () => {
-            win.classList.toggle("maximized");
-        }
-    }
-
-});
+updateDock();
 
 </script>
 
