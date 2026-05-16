@@ -126,8 +126,6 @@ body::before{
 
 .btn:hover{
     transform:scale(1.2);
-
-
 }
 
 /* ===== MAIN WINDOW ===== */
@@ -632,19 +630,6 @@ function closeReview(){
     modal.classList.remove("show");
 }
 
-</script>
-
-    <script>
-
-const modal = document.getElementById("reviewModal");
-
-function openReview(){
-    modal.classList.add("show");
-}
-
-function closeReview(){
-    modal.classList.remove("show");
-}
 <script>
 document.querySelectorAll(".window").forEach(win => {
     const content = win.querySelector(".content");
@@ -692,7 +677,8 @@ document.querySelectorAll(".window").forEach(win => {
         });
     }
 });
+
 </script>
-    
+
 </body>
 </html>
