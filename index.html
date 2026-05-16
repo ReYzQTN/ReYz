@@ -6,14 +6,15 @@
 <title>ReYz</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:system-ui, sans-serif;
+    font-family:system-ui,sans-serif;
 }
 
-html, body{
+html,body{
     width:100%;
     height:100%;
     overflow:hidden;
@@ -27,16 +28,18 @@ body::before{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.55);
+    background:rgba(0,0,0,0.58);
 }
 
-/* ===== WINDOW ===== */
+/* WINDOW */
+
 .window{
     position:fixed;
 
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
+
+    transform:translate(-50%,-50%);
 
     width:1300px;
     height:850px;
@@ -45,24 +48,24 @@ body::before{
     max-height:94vh;
 
     background:rgba(255,255,255,0.06);
+
     backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.12);
+
     border-radius:18px;
 
-    box-shadow:0 30px 100px rgba(0,0,0,0.75);
+    overflow:hidden;
 
     display:flex;
     flex-direction:column;
 
-    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,0.75);
+
     z-index:10;
 }
 
-/* 🔥 FULLSCREEN FIX (100% écran réel) */
 .window.maximized{
-    position:fixed !important;
-
     top:0 !important;
     left:0 !important;
 
@@ -77,25 +80,27 @@ body::before{
     border-radius:0 !important;
 }
 
-/* MINIMIZED */
 .window.minimized{
     height:50px !important;
 }
 
-/* CLOSED */
 .window.closed{
     display:none !important;
 }
 
-/* ===== TITLE BAR ===== */
+/* TITLEBAR */
+
 .titlebar{
     height:50px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:0 18px;
 
     background:rgba(0,0,0,0.35);
+
     border-bottom:1px solid rgba(255,255,255,0.08);
 
     flex-shrink:0;
@@ -107,7 +112,8 @@ body::before{
     font-weight:600;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
+
 .controls{
     display:flex;
     gap:10px;
@@ -116,38 +122,60 @@ body::before{
 .btn{
     width:13px;
     height:13px;
+
     border-radius:50%;
+
     cursor:pointer;
+
+    background:rgba(255,255,255,0.1);
+
     border:1px solid rgba(255,255,255,0.15);
-    background:rgba(255,255,255,0.08);
+
     transition:0.2s;
 }
 
-.close:hover{ background:rgba(255,80,80,0.4); }
-.min:hover{ background:rgba(255,200,80,0.4); }
-.max:hover{ background:rgba(80,255,140,0.4); }
+.close:hover{
+    background:rgba(255,80,80,0.4);
+}
+
+.min:hover{
+    background:rgba(255,200,80,0.4);
+}
+
+.max:hover{
+    background:rgba(80,255,140,0.4);
+}
 
 .btn:hover{
     transform:scale(1.2);
 }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
+
 .content{
     flex:1;
+
+    overflow-y:auto;
+
     padding:60px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
+
     gap:26px;
+
     color:white;
-    overflow-y:auto;
 }
 
-/* avatar */
+/* PROFILE */
+
 .pp{
     width:180px;
     height:180px;
+
     border-radius:20px;
+
     object-fit:cover;
 }
 
@@ -156,61 +184,122 @@ body::before{
     font-weight:900;
 }
 
-/* links */
+/* LINKS */
+
 .links{
     width:100%;
     max-width:900px;
+
     display:flex;
     flex-direction:column;
+
     gap:18px;
-    padding-bottom:40px;
 }
 
 .link{
     width:100%;
-    text-decoration:none;
-    color:white;
 
     padding:20px;
+
     border-radius:14px;
 
     background:rgba(255,255,255,0.06);
+
     border:1px solid rgba(255,255,255,0.12);
+
+    color:white;
+
+    text-decoration:none;
+
+    text-align:center;
 
     font-size:18px;
     font-weight:600;
-    text-align:center;
 
     transition:0.2s;
+
+    cursor:pointer;
 }
 
 .link:hover{
     background:rgba(255,0,0,0.25);
+
     border-color:rgba(255,0,0,0.4);
+
     transform:scale(1.02);
 }
 
-/* ===== MESSAGE ===== */
+/* CRITIQUE */
+
+.review-title{
+    font-size:64px;
+    font-weight:900;
+}
+
+.stars{
+    font-size:38px;
+    color:#ffd65c;
+}
+
+.review-text{
+    max-width:950px;
+
+    line-height:1.9;
+
+    font-size:18px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    padding:35px;
+
+    border-radius:18px;
+}
+
+.gallery{
+    display:flex;
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+}
+
+.gallery img{
+    width:420px;
+
+    border-radius:14px;
+}
+
+/* MESSAGE */
+
 .open-app{
     position:fixed;
+
     top:50%;
     left:50%;
-    transform:translate(-50%, -50%);
+
+    transform:translate(-50%,-50%);
 
     width:360px;
+
     padding:18px;
 
     border-radius:14px;
 
     background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.15);
 
-    color:white;
-    text-align:center;
+    border:1px solid rgba(255,255,255,0.15);
 
     backdrop-filter:blur(14px);
 
+    color:white;
+
+    text-align:center;
+
     display:none;
+
     z-index:99999;
 }
 
@@ -220,54 +309,123 @@ body::before{
 
 .click-here{
     display:inline-block;
+
     margin-top:8px;
 
     padding:4px 10px;
+
     border-radius:8px;
 
     background:rgba(255,0,0,0.25);
+
     border:1px solid rgba(255,0,0,0.4);
 
     cursor:pointer;
+
     font-weight:800;
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="open-app" id="openBtn">
-    Bravo tu as cassé le site !<br>
-    Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
+Bravo tu as cassé le site !<br>
+Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
 </div>
+
+<!-- MAIN WINDOW -->
 
 <div class="window" id="window">
 
-    <div class="titlebar">
-        <div>Mes liens</div>
+<div class="titlebar">
 
-        <div class="controls">
-            <div class="btn close" onclick="closeWindow()"></div>
-            <div class="btn min" onclick="minimizeWindow()"></div>
-            <div class="btn max" onclick="maximizeWindow()"></div>
-        </div>
-    </div>
+<div>Mes liens</div>
 
-    <div class="content">
+<div class="controls">
+<div class="btn close" onclick="closeWindow()"></div>
+<div class="btn min" onclick="minimizeWindow()"></div>
+<div class="btn max" onclick="maximizeWindow()"></div>
+</div>
 
-        <img src="pp.jpg" class="pp">
-        <div class="name">ReYz</div>
+</div>
 
-        <div class="links">
-            <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
-            <a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">Backloggd</a>
-            <a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">Twitch</a>
-            <a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">YouTube</a>
-            <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
-            <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
-        </div>
+<div class="content">
 
-    </div>
+<img src="pp.jpg" class="pp">
+
+<div class="name">ReYz</div>
+
+<div class="links">
+
+<a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
+
+<a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">Backloggd</a>
+
+<a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">Twitch</a>
+
+<a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">YouTube</a>
+
+<a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
+
+<a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
+
+<div class="link" onclick="openCritique()">
+Mes Critiques • Magellan
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CRITIQUE WINDOW -->
+
+<div class="window closed" id="critiqueWindow">
+
+<div class="titlebar">
+
+<div>Critique • Magellan</div>
+
+<div class="controls">
+<div class="btn close" onclick="closeCritique()"></div>
+</div>
+
+</div>
+
+<div class="content">
+
+<img src="magellan1.jpg"
+style="
+width:100%;
+max-width:900px;
+border-radius:18px;
+">
+
+<div class="review-title">
+Magellan
+</div>
+
+<div class="stars">
+★★★★☆
+</div>
+
+<div class="review-text">
+
+Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes capturent l’image comme des tableaux peints ce qui rend chaque moment du film contemplatif. On peut d’ailleurs remercier Artur Tort pour son travail exceptionnel sur la photographie. De plus, la narration lente ne m’a absolument pas freiné. Au contraire, je trouve qu’elle accentue parfaitement l’épreuve de foi qu’a subit l’équipage durant cette expédition catastrophique du début jusqu’à la fin. Le seul bémol que je pourrais reprocher au film, c’est qu’il faut au minima se renseigner sur la traversée de Magellan avant le visionnage, afin de mieux comprendre les différents lieux ainsi que les dates clés de l’expédition. Sans ce contexte, certaines séquences peuvent paraître confuses et le rythme très lent, surtout que le film dure presque trois heures, donc le spectateur peut vite décrocher.
+    
+</div>
+
+<div class="gallery">
+
+<img src="magellan2.jpg">
+<img src="magellan3.jpg">
+
+</div>
+
+</div>
 
 </div>
 
@@ -292,6 +450,16 @@ function minimizeWindow(){
 
 function maximizeWindow(){
     win.classList.toggle("maximized");
+}
+
+const critique = document.getElementById("critiqueWindow");
+
+function openCritique(){
+    critique.classList.remove("closed");
+}
+
+function closeCritique(){
+    critique.classList.add("closed");
 }
 
 </script>
