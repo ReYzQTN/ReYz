@@ -653,7 +653,8 @@ const windows = document.querySelectorAll(".window");
 const restoreMsg = document.createElement("div");
 restoreMsg.id = "restoreMsg";
 restoreMsg.innerHTML = `
-    Bravo tu as cassé le site ! Clique <span id="restoreBtn">ICI</span> pour remettre tout en ordre.
+    <div class="msg-title">Bravo tu as cassé le site !</div>
+    <div class="msg-action">Clique <span id="restoreBtn">ICI</span> pour remettre tout en ordre.</div>
 `;
 document.body.appendChild(restoreMsg);
 
