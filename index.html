@@ -7,32 +7,6 @@
 
 <style>
 
-#restoreMsg{
-    position:fixed;
-    inset:0;
-    display:none;
-
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    color:white;
-    font-size:22px;
-    font-weight:700;
-
-    background:rgba(0,0,0,0.85);
-    z-index:99999;
-    line-height:1.6;
-}
-
-#restoreBtn{
-    color:#ff4d4d;
-    text-decoration:underline;
-    cursor:pointer;
-}
-
 *{
     margin:0;
     padding:0;
@@ -58,6 +32,32 @@ body::before{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.62);
+}
+
+#restoreMsg{
+    position:fixed;
+    inset:0;
+    display:none;
+
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+    font-size:22px;
+    font-weight:700;
+
+    background:rgba(0,0,0,0.85);
+    z-index:99999;
+    line-height:1.6;
+}
+
+#restoreBtn{
+    color:#ff4d4d;
+    text-decoration:underline;
+    cursor:pointer;
 }
 
 /* ===== DESKTOP ===== */
@@ -648,6 +648,16 @@ Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes captur
 
 const modal = document.getElementById("reviewModal");
 
+const windows = document.querySelectorAll(".window");
+
+const restoreMsg = document.createElement("div");
+restoreMsg.id = "restoreMsg";
+restoreMsg.innerHTML = `
+    Bravo tu as cassé le site !<br>
+    Clique <span id="restoreBtn">ICI</span> pour remettre tout en ordre.
+`;
+document.body.appendChild(restoreMsg);
+
 function openReview(){
     modal.classList.add("show");
 }
@@ -656,6 +666,14 @@ function closeReview(){
     modal.classList.remove("show");
 }
 
+function checkWindows() {
+    const anyVisible = Array.from(windows)
+        .some(win => win.style.display !== "none");
+
+    if (!anyVisible) {
+        restoreMsg.style.display = "flex";
+    }
+}
 
 /* ===== BOUTONS DES FENÊTRES ===== */
 
@@ -704,28 +722,15 @@ document.querySelectorAll(".window").forEach(win => {
 });
     }
 });
+document.getElementById("restoreBtn").addEventListener("click", () => {
+    windows.forEach(win => {
+        win.style.display = "flex";
+    });
+
+    restoreMsg.style.display = "none";
+});
 
 </script>
-
-function checkWindows() {
-    const anyVisible = Array.from(windows)
-        .some(win => win.style.display !== "none");
-
-    if (!anyVisible) {
-        document.getElementById("restoreMsg").style.display = "flex";
-    }
-}
-
-const windows = document.querySelectorAll(".window");
-const desktop = document.querySelector(".desktop");
-
-const restoreMsg = document.createElement("div");
-restoreMsg.id = "restoreMsg";
-restoreMsg.innerHTML = `
-    Bravo tu as cassé le site !<br>
-    Clique <span id="restoreBtn">ICI</span> pour remettre tout en ordre.
-`;
-document.body.appendChild(restoreMsg);
 
 </body>
 </html>
