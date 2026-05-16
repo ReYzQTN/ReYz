@@ -304,42 +304,22 @@ body::before{
     <!-- CRITIQUES -->
     <div class="window">
         <div class="titlebar">
-            <!-- ===== MES CRITIQUES ===== -->
-
-    <div class="window critique-window">
-
-        <div class="titlebar">
-
             <div>Mes Critiques</div>
-
             <div class="controls">
                 <div class="btn close"></div>
                 <div class="btn min"></div>
                 <div class="btn max"></div>
             </div>
-
         </div>
 
         <div class="content">
-
             <div class="review-list">
-
                 <div class="review-card" onclick="openReview()">
-
-                    <div class="review-title">
-                    Magellan
-                    </div>
-
-                    <div class="review-meta">
-                    ★★★★☆
-                    </div>
-
+                    <div class="review-title">Magellan</div>
+                    <div class="review-meta">★★★★☆</div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
 </div>
@@ -434,6 +414,49 @@ function openReview(){
 function closeReview(){
     modal.classList.remove("show");
 }
+
+</script>
+
+</body>
+</html>
+
+/* MODAL */
+const modal = document.getElementById("reviewModal");
+
+function openReview(){
+    modal.classList.add("show");
+}
+
+function closeReview(){
+    modal.classList.remove("show");
+}
+
+/* WINDOW CONTROLS */
+document.querySelectorAll(".window").forEach(win => {
+
+    const closeBtn = win.querySelector(".close");
+    const minBtn = win.querySelector(".min");
+    const maxBtn = win.querySelector(".max");
+
+    if(closeBtn){
+        closeBtn.onclick = () => {
+            win.style.display = "none";
+        }
+    }
+
+    if(minBtn){
+        minBtn.onclick = () => {
+            win.classList.toggle("minimized");
+        }
+    }
+
+    if(maxBtn){
+        maxBtn.onclick = () => {
+            win.classList.toggle("maximized");
+        }
+    }
+
+});
 
 </script>
 
