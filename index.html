@@ -634,53 +634,110 @@ function closeReview(){
 
 </script>
 
+/* ===== MESSAGE ===== */
+.open-app{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    width:360px;
+    padding:18px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+
+    color:white;
+    text-align:center;
+
+    backdrop-filter:blur(14px);
+
+    display:none;
+    z-index:99999;
+}
+
+.open-app.show{
+    display:block;
+}
+
+.click-here{
+    display:inline-block;
+    margin-top:8px;
+
+    padding:4px 10px;
+    border-radius:8px;
+
+    background:rgba(255,0,0,0.25);
+    border:1px solid rgba(255,0,0,0.4);
+
+    cursor:pointer;
+    font-weight:800;
+}
+</style>
+</head>
+
+<body>
+
+<div class="open-app" id="openBtn">
+    Bravo tu as cassé le site !<br>
+    Clique <span class="click-here" onclick="openWindow()">ICI</span> pour remettre tout en ordre
+</div>
+
+<div class="window" id="window">
+
+    <div class="titlebar">
+        <div>Mes liens</div>
+
+        <div class="controls">
+            <div class="btn close" onclick="closeWindow()"></div>
+            <div class="btn min" onclick="minimizeWindow()"></div>
+            <div class="btn max" onclick="maximizeWindow()"></div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <img src="pp.jpg" class="pp">
+        <div class="name">ReYz</div>
+
+        <div class="links">
+            <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">Letterboxd</a>
+            <a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">Backloggd</a>
+            <a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">Twitch</a>
+            <a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">YouTube</a>
+            <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">Discord</a>
+            <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">Google Doc</a>
+        </div>
+
+    </div>
+
+</div>
+
 <script>
-document.querySelectorAll(".window").forEach(win => {
-    const content = win.querySelector(".content");
-    const minBtn = win.querySelector(".min");
-    const maxBtn = win.querySelector(".max");
-    const closeBtn = win.querySelector(".close");
 
-    let isMin = false;
-    let isMax = false;
+const win = document.getElementById("window");
+const openBtn = document.getElementById("openBtn");
 
-    // MINIMIZE
-    if (minBtn) {
-        minBtn.addEventListener("click", () => {
-            isMin = !isMin;
-            content.style.display = isMin ? "none" : "flex";
-            win.style.height = isMin ? "50px" : "";
-        });
-    }
+function closeWindow(){
+    win.classList.add("closed");
+    openBtn.classList.add("show");
+}
 
-    // MAXIMIZE
-    if (maxBtn) {
-        maxBtn.addEventListener("click", () => {
-            isMax = !isMax;
+function openWindow(){
+    win.classList.remove("closed");
+    openBtn.classList.remove("show");
+}
 
-            if (isMax) {
-                win.dataset.oldHeight = win.style.height;
-                win.style.position = "fixed";
-                win.style.inset = "20px";
-                win.style.zIndex = "9999";
-                win.style.width = "95vw";
-                win.style.height = "90vh";
-            } else {
-                win.style.position = "";
-                win.style.inset = "";
-                win.style.width = "";
-                win.style.height = win.dataset.oldHeight || "";
-            }
-        });
-    }
+function minimizeWindow(){
+    win.classList.toggle("minimized");
+}
 
-    // CLOSE (optionnel pour les fenêtres principales)
-    if (closeBtn && win.id !== "reviewModal") {
-        closeBtn.addEventListener("click", () => {
-            win.style.display = "none";
-        });
-    }
-});
+function maximizeWindow(){
+    win.classList.toggle("maximized");
+}
+
 </script>
 
 </body>
