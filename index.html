@@ -39,13 +39,10 @@ body::before{
 .desktop{
     position:relative;
     z-index:5;
-
     width:1300px;
     max-width:96vw;
-
     display:flex;
     flex-direction:column;
-
     gap:24px;
 }
 
@@ -53,36 +50,38 @@ body::before{
 
 .window{
     background:rgba(255,255,255,0.06);
-
     backdrop-filter:blur(18px);
-
     border:1px solid rgba(255,255,255,0.12);
-
     border-radius:18px;
-
     overflow:hidden;
-
     box-shadow:0 30px 100px rgba(0,0,0,0.75);
-
     display:flex;
     flex-direction:column;
+    transition:0.25s;
+}
+
+/* états fenêtres */
+.window.minimized .content,
+.window.minimized .modal-content{
+    display:none;
+}
+
+.window.maximized{
+    position:fixed;
+    inset:20px;
+    z-index:999;
 }
 
 /* ===== TITLEBAR ===== */
 
 .titlebar{
     height:50px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     padding:0 18px;
-
     background:rgba(0,0,0,0.35);
-
     border-bottom:1px solid rgba(255,255,255,0.08);
-
     flex-shrink:0;
 }
 
@@ -102,51 +101,28 @@ body::before{
 .btn{
     width:13px;
     height:13px;
-
     border-radius:50%;
-
     background:rgba(255,255,255,0.08);
-
     border:1px solid rgba(255,255,255,0.15);
-
     transition:0.2s;
+    cursor:pointer;
 }
 
-.close:hover{
-    background:rgba(255,80,80,0.4);
-}
+.close:hover{ background:rgba(255,80,80,0.4); }
+.min:hover{ background:rgba(255,200,80,0.4); }
+.max:hover{ background:rgba(80,255,140,0.4); }
 
-.min:hover{
-    background:rgba(255,200,80,0.4);
-}
+.btn:hover{ transform:scale(1.2); }
 
-.max:hover{
-    background:rgba(80,255,140,0.4);
-}
-
-.btn:hover{
-    transform:scale(1.2);
-}
-
-/* ===== MAIN WINDOW ===== */
-
-.main-window{
-    height:520px;
-}
+/* ===== CONTENT ===== */
 
 .content{
     flex:1;
-
-    overflow-y:auto;
-
-    padding:50px;
-
+    padding:40px;
     display:flex;
     flex-direction:column;
     align-items:center;
-
     gap:24px;
-
     color:white;
 }
 
@@ -155,9 +131,7 @@ body::before{
 .pp{
     width:170px;
     height:170px;
-
     border-radius:20px;
-
     object-fit:cover;
 }
 
@@ -166,119 +140,80 @@ body::before{
     font-weight:900;
 }
 
-/* ===== LINKS ===== */
+/* ===== LINKS (GRILLE AU LIEU DE SCROLL) ===== */
 
 .links{
     width:100%;
     max-width:900px;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:18px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
 }
 
 .link{
-    width:100%;
-
-    padding:20px;
-
+    padding:18px;
     border-radius:14px;
-
     background:rgba(255,255,255,0.06);
-
     border:1px solid rgba(255,255,255,0.12);
-
     color:white;
-
     text-decoration:none;
-
     text-align:center;
-
-    font-size:18px;
+    font-size:16px;
     font-weight:600;
-
     transition:0.2s;
 }
 
 .link:hover{
     background:rgba(255,0,0,0.25);
-
     border-color:rgba(255,0,0,0.4);
-
     transform:scale(1.02);
 }
 
-/* ===== CRITIQUE WINDOW ===== */
-
-.critique-window{
-    height:320px;
-}
+/* ===== CRITIQUES ===== */
 
 .review-list{
     width:100%;
-
-    display:flex;
-    flex-direction:column;
-
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:16px;
 }
 
 .review-card{
-    width:100%;
-
     padding:22px;
-
     border-radius:16px;
-
     background:rgba(255,255,255,0.06);
-
     border:1px solid rgba(255,255,255,0.12);
-
     color:white;
-
     cursor:pointer;
-
     transition:0.2s;
 }
 
 .review-card:hover{
     background:rgba(255,0,0,0.25);
-
     border-color:rgba(255,0,0,0.4);
-
     transform:scale(1.01);
 }
 
 .review-title{
-    font-size:28px;
+    font-size:24px;
     font-weight:800;
 }
 
 .review-meta{
     margin-top:8px;
-
     color:#ffd95e;
-
-    font-size:18px;
 }
 
 /* ===== MODAL ===== */
 
 .modal{
     position:fixed;
-
     inset:0;
-
     background:rgba(0,0,0,0.78);
-
     backdrop-filter:blur(8px);
-
     display:none;
-
     justify-content:center;
     align-items:center;
-
     z-index:999;
 }
 
@@ -288,155 +223,49 @@ body::before{
 
 .modal-window{
     width:1300px;
-    height:92vh;
-
     max-width:95vw;
-
+    height:92vh;
     background:rgba(12,12,12,0.96);
-
     border:1px solid rgba(255,255,255,0.12);
-
     border-radius:20px;
-
     overflow:hidden;
-
     display:flex;
     flex-direction:column;
-
-    box-shadow:0 40px 120px rgba(0,0,0,0.85);
 }
 
 .modal-content{
-    overflow-y:auto;
-
-    padding:50px;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:40px;
-
+    padding:40px;
     color:white;
-}
-
-/* ===== HEADER REVIEW ===== */
-
-.review-header{
-    display:flex;
-    gap:40px;
-
-    align-items:flex-start;
-
-    flex-wrap:wrap;
-}
-
-.poster{
-    width:260px;
-
-    border-radius:18px;
-
-    box-shadow:0 20px 60px rgba(0,0,0,0.6);
-}
-
-.review-info{
-    flex:1;
-
     display:flex;
     flex-direction:column;
-
-    gap:18px;
+    gap:30px;
 }
 
-.big-title{
-    font-size:72px;
-    font-weight:900;
-}
-
-.meta{
-    display:flex;
-    gap:18px;
-
-    flex-wrap:wrap;
-}
-
-.meta-box{
-    padding:10px 16px;
-
-    border-radius:12px;
-
-    background:rgba(255,255,255,0.06);
-
-    border:1px solid rgba(255,255,255,0.1);
-
-    font-size:15px;
-}
-
-.stars{
-    color:#ffd95e;
-    font-size:42px;
-}
-
-/* ===== REVIEW TEXT ===== */
+/* ===== REVIEW ===== */
 
 .review-text{
-    width:100%;
-
-    line-height:1.95;
-
-    font-size:18px;
-
+    line-height:1.8;
+    font-size:16px;
     background:rgba(255,255,255,0.05);
-
-    border:1px solid rgba(255,255,255,0.08);
-
-    border-radius:18px;
-
-    padding:35px;
+    border-radius:14px;
+    padding:25px;
 }
-
-/* ===== GALLERY ===== */
 
 .gallery{
     display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
 }
 
 .gallery img{
     width:100%;
-
-    border-radius:16px;
-
-    transition:0.25s;
-}
-
-.gallery img:hover{
-    transform:scale(1.02);
+    border-radius:12px;
 }
 
 /* ===== RESPONSIVE ===== */
 
 @media(max-width:900px){
-
-    .desktop{
-        width:95vw;
-    }
-
-    .big-title{
-        font-size:44px;
-    }
-
-    .name{
-        font-size:42px;
-    }
-
-    .poster{
-        width:100%;
-        max-width:320px;
-    }
-
+    .name{ font-size:40px; }
 }
 
 </style>
@@ -446,181 +275,76 @@ body::before{
 
 <div class="desktop">
 
-    <!-- ===== MES LIENS ===== -->
-
-    <div class="window main-window">
-
+    <!-- LINKS -->
+    <div class="window">
         <div class="titlebar">
-
             <div>Mes Liens</div>
-
             <div class="controls">
                 <div class="btn close"></div>
                 <div class="btn min"></div>
                 <div class="btn max"></div>
             </div>
-
         </div>
 
         <div class="content">
-
             <img src="pp.jpg" class="pp">
-
             <div class="name">ReYz</div>
 
             <div class="links">
-
-                <a class="link" href="https://letterboxd.com/reyzqtn/" target="_blank">
-                Letterboxd
-                </a>
-
-                <a class="link" href="https://backloggd.com/u/ReYzQTN/" target="_blank">
-                Backloggd
-                </a>
-
-                <a class="link" href="https://www.twitch.tv/reyzqtn/" target="_blank">
-                Twitch
-                </a>
-
-                <a class="link" href="https://www.youtube.com/@ReYzQTN" target="_blank">
-                YouTube
-                </a>
-
-                <a class="link" href="https://discord.gg/HTXMsQTzQ7" target="_blank">
-                Discord
-                </a>
-
-                <a class="link" href="https://docs.google.com/spreadsheets/d/1egwAp5F1hMdvSqRqc1NFNeV6fZbJHpul8cFs1tXH9pc" target="_blank">
-                Google Doc
-                </a>
-
+                <a class="link" href="#">Letterboxd</a>
+                <a class="link" href="#">Backloggd</a>
+                <a class="link" href="#">Twitch</a>
+                <a class="link" href="#">YouTube</a>
+                <a class="link" href="#">Discord</a>
+                <a class="link" href="#">Google Doc</a>
             </div>
-
         </div>
-
     </div>
 
-    <!-- ===== MES CRITIQUES ===== -->
-
-    <div class="window critique-window">
-
+    <!-- CRITIQUES -->
+    <div class="window">
         <div class="titlebar">
-
             <div>Mes Critiques</div>
-
             <div class="controls">
                 <div class="btn close"></div>
                 <div class="btn min"></div>
                 <div class="btn max"></div>
             </div>
-
         </div>
 
         <div class="content">
-
             <div class="review-list">
-
                 <div class="review-card" onclick="openReview()">
-
-                    <div class="review-title">
-                    Magellan
-                    </div>
-
-                    <div class="review-meta">
-                    ★★★★☆
-                    </div>
-
+                    <div class="review-title">Magellan</div>
+                    <div class="review-meta">★★★★☆</div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
 </div>
 
-<!-- ===== REVIEW MODAL ===== -->
-
+<!-- MODAL -->
 <div class="modal" id="reviewModal">
-
     <div class="modal-window">
-
         <div class="titlebar">
-
             <div>Critique • Magellan</div>
-
             <div class="controls">
                 <div class="btn close" onclick="closeReview()"></div>
             </div>
-
         </div>
 
         <div class="modal-content">
-
-            <!-- HEADER -->
-
-            <div class="review-header">
-
-                <img src="magellan-poster.jpg" class="poster">
-
-                <div class="review-info">
-
-                    <div class="big-title">
-                    Magellan
-                    </div>
-
-                    <div class="meta">
-
-                        <div class="meta-box">
-                        Réalisateur • Lav Diaz
-                        </div>
-
-                        <div class="meta-box">
-                        Durée • 2h 43m
-                        </div>
-
-                        <div class="meta-box">
-                        2025
-                        </div>
-
-                    </div>
-
-                    <div class="stars">
-                    ★★★★☆
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- REVIEW -->
-
             <div class="review-text">
-                
-Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes capturent l’image comme des tableaux peints ce qui rend chaque moment du film contemplatif. On peut d’ailleurs remercier Artur Tort pour son travail exceptionnel sur la photographie. De plus, la narration lente ne m’a absolument pas freiné. Au contraire, je trouve qu’elle accentue parfaitement l’épreuve de foi qu’a subit l’équipage durant cette expédition catastrophique du début jusqu’à la fin. Le seul bémol que je pourrais reprocher au film, c’est qu’il faut au minima se renseigner sur la traversée de Magellan avant le visionnage, afin de mieux comprendre les différents lieux ainsi que les dates clés de l’expédition. Sans ce contexte, certaines séquences peuvent paraître confuses et le rythme très lent, surtout que le film dure presque trois heures, donc le spectateur peut vite décrocher.
-            
+                Ton texte ici...
             </div>
-
-            <!-- GALLERY -->
-
-            <div class="gallery">
-
-                <img src="magellan1.png">
-                <img src="magellan2.png">
-                <img src="magellan3.png">
-                <img src="magellan4.png">
-
-            </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script>
 
+/* MODAL */
 const modal = document.getElementById("reviewModal");
 
 function openReview(){
@@ -630,6 +354,33 @@ function openReview(){
 function closeReview(){
     modal.classList.remove("show");
 }
+
+/* WINDOW CONTROLS */
+document.querySelectorAll(".window").forEach(win => {
+
+    const closeBtn = win.querySelector(".close");
+    const minBtn = win.querySelector(".min");
+    const maxBtn = win.querySelector(".max");
+
+    if(closeBtn){
+        closeBtn.onclick = () => {
+            win.style.display = "none";
+        }
+    }
+
+    if(minBtn){
+        minBtn.onclick = () => {
+            win.classList.toggle("minimized");
+        }
+    }
+
+    if(maxBtn){
+        maxBtn.onclick = () => {
+            win.classList.toggle("maximized");
+        }
+    }
+
+});
 
 </script>
 
