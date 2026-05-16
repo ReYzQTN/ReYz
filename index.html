@@ -7,6 +7,32 @@
 
 <style>
 
+#restoreMsg{
+    position:fixed;
+    inset:0;
+    display:none;
+
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+    font-size:22px;
+    font-weight:700;
+
+    background:rgba(0,0,0,0.85);
+    z-index:99999;
+    line-height:1.6;
+}
+
+#restoreBtn{
+    color:#ff4d4d;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
 *{
     margin:0;
     padding:0;
@@ -673,12 +699,33 @@ document.querySelectorAll(".window").forEach(win => {
     // CLOSE (sauf modal)
     if (closeBtn && win.id !== "reviewModal") {
         closeBtn.addEventListener("click", () => {
-            win.style.display = "none";
-        });
+    win.style.display = "none";
+    checkWindows();
+});
     }
 });
 
 </script>
+
+function checkWindows() {
+    const anyVisible = Array.from(windows)
+        .some(win => win.style.display !== "none");
+
+    if (!anyVisible) {
+        document.getElementById("restoreMsg").style.display = "flex";
+    }
+}
+
+const windows = document.querySelectorAll(".window");
+const desktop = document.querySelector(".desktop");
+
+const restoreMsg = document.createElement("div");
+restoreMsg.id = "restoreMsg";
+restoreMsg.innerHTML = `
+    Bravo tu as cassé le site !<br>
+    Clique <span id="restoreBtn">ICI</span> pour remettre tout en ordre.
+`;
+document.body.appendChild(restoreMsg);
 
 </body>
 </html>
