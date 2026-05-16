@@ -304,47 +304,127 @@ body::before{
     <!-- CRITIQUES -->
     <div class="window">
         <div class="titlebar">
+            <!-- ===== MES CRITIQUES ===== -->
+
+    <div class="window critique-window">
+
+        <div class="titlebar">
+
             <div>Mes Critiques</div>
+
             <div class="controls">
                 <div class="btn close"></div>
                 <div class="btn min"></div>
                 <div class="btn max"></div>
             </div>
+
         </div>
 
         <div class="content">
+
             <div class="review-list">
+
                 <div class="review-card" onclick="openReview()">
-                    <div class="review-title">Magellan</div>
-                    <div class="review-meta">★★★★☆</div>
+
+                    <div class="review-title">
+                    Magellan
+                    </div>
+
+                    <div class="review-meta">
+                    ★★★★☆
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
 </div>
 
-<!-- MODAL -->
+<!-- ===== REVIEW MODAL ===== -->
+
 <div class="modal" id="reviewModal">
+
     <div class="modal-window">
+
         <div class="titlebar">
+
             <div>Critique • Magellan</div>
+
             <div class="controls">
                 <div class="btn close" onclick="closeReview()"></div>
             </div>
+
         </div>
 
         <div class="modal-content">
-            <div class="review-text">
-                Ton texte ici...
+
+            <!-- HEADER -->
+
+            <div class="review-header">
+
+                <img src="magellan-poster.jpg" class="poster">
+
+                <div class="review-info">
+
+                    <div class="big-title">
+                    Magellan
+                    </div>
+
+                    <div class="meta">
+
+                        <div class="meta-box">
+                        Réalisateur • Lav Diaz
+                        </div>
+
+                        <div class="meta-box">
+                        Durée • 2h 43m
+                        </div>
+
+                        <div class="meta-box">
+                        2025
+                        </div>
+
+                    </div>
+
+                    <div class="stars">
+                    ★★★★☆
+                    </div>
+
+                </div>
+
             </div>
+
+            <!-- REVIEW -->
+
+            <div class="review-text">
+                
+Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes capturent l’image comme des tableaux peints ce qui rend chaque moment du film contemplatif. On peut d’ailleurs remercier Artur Tort pour son travail exceptionnel sur la photographie. De plus, la narration lente ne m’a absolument pas freiné. Au contraire, je trouve qu’elle accentue parfaitement l’épreuve de foi qu’a subit l’équipage durant cette expédition catastrophique du début jusqu’à la fin. Le seul bémol que je pourrais reprocher au film, c’est qu’il faut au minima se renseigner sur la traversée de Magellan avant le visionnage, afin de mieux comprendre les différents lieux ainsi que les dates clés de l’expédition. Sans ce contexte, certaines séquences peuvent paraître confuses et le rythme très lent, surtout que le film dure presque trois heures, donc le spectateur peut vite décrocher.
+            
+            </div>
+
+            <!-- GALLERY -->
+
+            <div class="gallery">
+
+                <img src="magellan1.png">
+                <img src="magellan2.png">
+                <img src="magellan3.png">
+                <img src="magellan4.png">
+
+            </div>
+
         </div>
+
     </div>
+
 </div>
 
 <script>
 
-/* MODAL */
 const modal = document.getElementById("reviewModal");
 
 function openReview(){
@@ -354,33 +434,6 @@ function openReview(){
 function closeReview(){
     modal.classList.remove("show");
 }
-
-/* WINDOW CONTROLS */
-document.querySelectorAll(".window").forEach(win => {
-
-    const closeBtn = win.querySelector(".close");
-    const minBtn = win.querySelector(".min");
-    const maxBtn = win.querySelector(".max");
-
-    if(closeBtn){
-        closeBtn.onclick = () => {
-            win.style.display = "none";
-        }
-    }
-
-    if(minBtn){
-        minBtn.onclick = () => {
-            win.classList.toggle("minimized");
-        }
-    }
-
-    if(maxBtn){
-        maxBtn.onclick = () => {
-            win.classList.toggle("maximized");
-        }
-    }
-
-});
 
 </script>
 
