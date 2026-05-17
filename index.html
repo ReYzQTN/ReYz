@@ -493,15 +493,14 @@ body::before{
 
 .window.maximized{
     position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
 
-    inset:20px;
-
-    width:auto;
-    height:auto;
+    width:95vw;
+    height:90vh;
 
     z-index:9999;
-
-    margin:0;
 }
 
 .desktop{
@@ -782,8 +781,6 @@ document.querySelectorAll(".window").forEach(win => {
     const maxBtn = win.querySelector(".max");
     const closeBtn = win.querySelector(".close");
 
-    let isMin = false;
-    let isMax = false;
 
     // MINIMIZE
 if (minBtn) {
@@ -794,16 +791,10 @@ if (minBtn) {
 
     // MAXIMIZE
     if (maxBtn) {
-        maxBtn.addEventListener("click", () => {
-    isMax = !isMax;
-
-    if (isMax) {
-        win.classList.add("maximized");
-    } else {
-        win.classList.remove("maximized");
-    }
-});
-    }
+    maxBtn.addEventListener("click", () => {
+        win.classList.toggle("maximized");
+    });
+}
 
     // CLOSE (sauf modal)
     if (closeBtn && win.id !== "reviewModal") {
@@ -824,24 +815,15 @@ document.getElementById("restoreBtn").addEventListener("click", () => {
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 
-window.addEventListener("DOMContentLoaded", () => {
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
-
-    document.querySelectorAll(".gallery img").forEach(img => {
-
-        img.addEventListener("click", () => {
-            lightbox.classList.add("show");
-            lightboxImg.src = img.src;
-        });
-
+document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+        lightbox.classList.add("show");
+        lightboxImg.src = img.src;
     });
+});
 
-    lightbox.addEventListener("click", () => {
-        lightbox.classList.remove("show");
-    });
-
+lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("show");
 });
 
 </script>
