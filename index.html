@@ -492,6 +492,53 @@ body::before{
     margin:0;
 }
 
+/* ===== LIGHTBOX ===== */
+
+.image-lightbox{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.92);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999999;
+
+    cursor:pointer;
+
+    padding:40px;
+}
+
+.image-lightbox.show{
+    display:flex;
+}
+
+.image-lightbox img{
+    max-width:95%;
+    max-height:95%;
+
+    border-radius:18px;
+
+    box-shadow:0 30px 80px rgba(0,0,0,0.8);
+
+    animation:zoomIn 0.2s ease;
+}
+
+@keyframes zoomIn{
+    from{
+        transform:scale(0.9);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
 </style>
 </head>
 
@@ -749,6 +796,34 @@ document.getElementById("restoreBtn").addEventListener("click", () => {
 
     restoreMsg.style.display = "none";
 });
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+document.querySelectorAll(".gallery img").forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        lightbox.classList.add("show");
+
+        lightboxImg.src = img.src;
+    });
+
+});
+
+lightbox.addEventListener("click", () => {
+
+    lightbox.classList.remove("show");
+
+});
+
+<!-- ===== LIGHTBOX ===== -->
+
+<div class="image-lightbox" id="lightbox">
+    <img id="lightboxImg">
+</div>
+
+<script>
 
 </script>
 
