@@ -472,23 +472,24 @@ body::before{
 }
 
 .window{
-    transition:0.25s ease;
+    transition:
+        width 0.25s ease,
+        height 0.25s ease,
+        border-radius 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .window.maximized{
     position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
 
-    width:95vw;
-    height:90vh;
+    inset:20px;
+
+    width:auto;
+    height:auto;
 
     z-index:9999;
-}
 
-.window.maximized{
-    border-radius:14px;
+    margin:0;
 }
 
 </style>
