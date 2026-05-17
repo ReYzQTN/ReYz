@@ -16,18 +16,15 @@
 
 html,body{
     width:100%;
-    min-height:100%;
+    height:100%;
+    overflow:hidden;
 }
 
 body{
     background:url('background.jpg') center/cover no-repeat;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
-
-    min-height:100vh;
-    overflow-y:auto;
-    padding:20px;
+    align-items:center;
 }
 
 body::before{
@@ -464,15 +461,6 @@ body::before{
         width:100%;
         max-width:320px;
     }
-
-.links{
-    grid-template-columns: 1fr;
-    gap:12px;
-}
-
-.link{
-    font-size:16px;
-    padding:16px;
 }
 
 .window.minimized .content{
@@ -493,22 +481,15 @@ body::before{
 
 .window.maximized{
     position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
 
-    width:95vw;
-    height:90vh;
+    inset:20px;
+
+    width:auto;
+    height:auto;
 
     z-index:9999;
-}
 
-.desktop{
-    gap:16px;
-}
-
-.critique-window{
-    height:auto;
+    margin:0;
 }
 
 /* ===== LIGHTBOX ===== */
@@ -766,7 +747,7 @@ function closeReview(){
 
 function checkWindows() {
     const anyVisible = Array.from(windows)
-        .some(win => getComputedStyle(win).display !== "none");
+        .some(win => win.style.display !== "none");
 
     if (!anyVisible) {
         restoreMsg.style.display = "flex";
@@ -781,6 +762,8 @@ document.querySelectorAll(".window").forEach(win => {
     const maxBtn = win.querySelector(".max");
     const closeBtn = win.querySelector(".close");
 
+    let isMin = false;
+    let isMax = false;
 
     // MINIMIZE
 if (minBtn) {
@@ -791,10 +774,16 @@ if (minBtn) {
 
     // MAXIMIZE
     if (maxBtn) {
-    maxBtn.addEventListener("click", () => {
-        win.classList.toggle("maximized");
-    });
-}
+        maxBtn.addEventListener("click", () => {
+    isMax = !isMax;
+
+    if (isMax) {
+        win.classList.add("maximized");
+    } else {
+        win.classList.remove("maximized");
+    }
+});
+    }
 
     // CLOSE (sauf modal)
     if (closeBtn && win.id !== "reviewModal") {
@@ -816,14 +805,20 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 
 document.querySelectorAll(".gallery img").forEach(img => {
+
     img.addEventListener("click", () => {
+
         lightbox.classList.add("show");
+
         lightboxImg.src = img.src;
     });
+
 });
 
 lightbox.addEventListener("click", () => {
+
     lightbox.classList.remove("show");
+
 });
 
 </script>
