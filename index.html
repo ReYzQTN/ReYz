@@ -445,6 +445,13 @@ body::before{
 
 @media(max-width:900px){
 
+.window.minimized .content{
+    display:none;
+}
+
+.window.minimized{
+    height:auto !important;
+}
     .desktop{
         width:95vw;
     }
@@ -687,12 +694,11 @@ document.querySelectorAll(".window").forEach(win => {
     let isMax = false;
 
     // MINIMIZE
-    if (minBtn) {
-        minBtn.addEventListener("click", () => {
-            isMin = !isMin;
-            content.style.display = isMin ? "none" : "flex";
-        });
-    }
+if (minBtn) {
+    minBtn.addEventListener("click", () => {
+        win.classList.toggle("minimized");
+    });
+}
 
     // MAXIMIZE
     if (maxBtn) {
