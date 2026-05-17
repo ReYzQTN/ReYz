@@ -16,8 +16,7 @@
 
 html,body{
     width:100%;
-    height:100%;
-    overflow:hidden;
+    min-height:100%;
 }
 
 body{
@@ -768,7 +767,7 @@ function closeReview(){
 
 function checkWindows() {
     const anyVisible = Array.from(windows)
-        .some(win => win.style.display !== "none");
+        .some(win => getComputedStyle(win).display !== "none");
 
     if (!anyVisible) {
         restoreMsg.style.display = "flex";
@@ -825,20 +824,23 @@ document.getElementById("restoreBtn").addEventListener("click", () => {
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 
-document.querySelectorAll(".gallery img").forEach(img => {
+window.addEventListener("DOMContentLoaded", () => {
 
-    img.addEventListener("click", () => {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
 
-        lightbox.classList.add("show");
+    document.querySelectorAll(".gallery img").forEach(img => {
 
-        lightboxImg.src = img.src;
+        img.addEventListener("click", () => {
+            lightbox.classList.add("show");
+            lightboxImg.src = img.src;
+        });
+
     });
 
-});
-
-lightbox.addEventListener("click", () => {
-
-    lightbox.classList.remove("show");
+    lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("show");
+    });
 
 });
 
