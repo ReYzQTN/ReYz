@@ -16,15 +16,21 @@
 
 html,body{
     width:100%;
-    height:100%;
-    overflow:hidden;
+    min-height:100%;
 }
 
 body{
     background:url('background.jpg') center/cover no-repeat;
     display:flex;
     justify-content:center;
-    align-items:center;
+
+    align-items:flex-start;
+
+    min-height:100vh;
+
+    overflow-y:auto;
+
+    padding:20px;
 }
 
 body::before{
@@ -164,7 +170,6 @@ body::before{
 
 .content{
     flex:1;
-    overflow:hidden;
 
     padding:30px;
 
@@ -238,7 +243,7 @@ body::before{
 /* ===== CRITIQUE WINDOW ===== */
 
 .critique-window{
-    height:320px;
+    min-height:320px;
 }
 
 .review-list{
@@ -538,6 +543,78 @@ body::before{
         opacity:1;
     }
 }
+
+@media(max-width:900px){
+
+    .desktop{
+        width:95vw;
+        gap:16px;
+    }
+
+    .window{
+        width:100%;
+    }
+
+    .content{
+        padding:20px;
+    }
+
+    .links{
+        grid-template-columns:1fr;
+    }
+
+    .link{
+        font-size:16px;
+        padding:16px;
+    }
+
+    .name{
+        font-size:42px;
+    }
+
+    .big-title{
+        font-size:42px;
+    }
+
+    .poster{
+        width:100%;
+        max-width:320px;
+    }
+
+    .modal-window{
+        width:95vw;
+        height:90vh;
+    }
+
+    .modal-content{
+        padding:25px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:900px){
+
+    .main-window,
+    .critique-window{
+        height:auto;
+        max-height:none;
+    }
+
+    .window.maximized{
+        inset:10px;
+        width:auto;
+        height:auto;
+        max-height:95vh;
+        overflow:auto;
+    }
+
+}
+
+</style>
 
 </style>
 </head>
