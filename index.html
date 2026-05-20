@@ -714,6 +714,17 @@ body::before{
                     </div>
 
                 </div>
+<div class="review-card" onclick="openReview2()">
+
+    <div class="review-title">
+    Shall We Dance?
+    </div>
+
+    <div class="review-meta">
+    ★★★★★
+    </div>
+
+</div>
 
             </div>
 
@@ -802,6 +813,85 @@ Mon premier Lav Diaz et j’ai adoré dont la manière ou les plans fixes captur
 
 </div>
 
+<!-- ===== REVIEW MODAL 2 ===== -->
+
+<div class="modal" id="reviewModal2">
+
+    <div class="modal-window">
+
+        <div class="titlebar">
+
+            <div>Critique • Shall We Dance?</div>
+
+            <div class="controls">
+                <div class="btn close" onclick="closeReview2()"></div>
+            </div>
+
+        </div>
+
+        <div class="modal-content">
+
+            <div class="review-header">
+
+                <img src="shallwedance-poster.jpg" class="poster">
+
+                <div class="review-info">
+
+                    <div class="big-title">
+                    Shall We Dance?
+                    </div>
+
+                    <div class="meta">
+
+                        <div class="meta-box">
+                        Réalisateur • Masayuki Suō
+                        </div>
+
+                        <div class="meta-box">
+                        Durée • 2h16
+                        </div>
+
+                        <div class="meta-box">
+                        1996
+                        </div>
+
+                    </div>
+
+                    <div class="stars">
+                    ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="review-text">
+
+Si suivre la norme ne vous rend pas heureux, il n’est jamais trop tard pour changer de vie et reprendre confiance en soi, peu importe l’âge : voilà ce que ce film nous transmet.
+
+Bien sûr, il ne brille pas seulement par son message, mais aussi par ses magnifiques plans et ses lumières, qui s’harmonisent parfaitement avec les différentes situations.
+
+L’équilibre entre l’humour et la mélancolie est très bien dosé. Et puis, il ne faut pas oublier que le film parle de danse, donc l’utilisation de la musique et les chorégraphies sont géniales et très bien filmées.
+
+Bref, si je devais le décrire en quelques mots, je dirais qu’il est touchant et réconfortant.
+
+            </div>
+
+            <div class="gallery">
+
+                <img src="shallwedance1.jpg">
+                <img src="shallwedance2.jpg">
+                <img src="shallwedance3.jpg">
+                <img src="shallwedance4.jpg">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <div class="image-lightbox" id="lightbox">
     <img id="lightboxImg">
 </div>
@@ -826,6 +916,16 @@ function openReview(){
 
 function closeReview(){
     modal.classList.remove("show");
+}
+
+const modal2 = document.getElementById("reviewModal2");
+
+function openReview2(){
+    modal2.classList.add("show");
+}
+
+function closeReview2(){
+    modal2.classList.remove("show");
 }
 
 function checkWindows() {
